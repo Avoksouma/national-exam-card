@@ -1,0 +1,10 @@
+.w-10 {
+    min-width: 10em;
+}
+.w-30 {
+    width: 30em;
+}
+.sidebar {
+    width: 15em;
+    overflow-y: auto;
+}
