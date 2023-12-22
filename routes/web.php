@@ -30,6 +30,10 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
 Route::post('/register', [AuthController::class, 'register']);
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/dashboard/user', [AuthController::class, 'users'])->name('user.index');
+Route::get('/dashboard/user/{user}', [AuthController::class, 'profile'])->name('user.show');
+Route::put('/dashboard/user/{user}', [AuthController::class, 'update'])->name('user.update');
+Route::get('/dashboard/user/{user}/edit', [AuthController::class, 'edit'])->name('user.edit');
 
 Route::resources([
     'school' => SchoolController::class,

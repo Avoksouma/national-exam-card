@@ -28,7 +28,7 @@
                     class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'application')) active @endif">
                     <i class='bi bi-collection me-2'></i> Student Application
                 </a>
-                <a href=""
+                <a href="{{ route('user.index') }}"
                     class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'user')) active @endif">
                     <i class='bi bi-people me-2'></i> User
                 </a>
