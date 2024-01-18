@@ -15,7 +15,14 @@ class CreateSchoolsTable extends Migration
     {
         Schema::create('schools', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('contact');
+            $table->string('image')->nullable();
+            $table->text('description')->nullable();
+            $table->softDeletes();
             $table->timestamps();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

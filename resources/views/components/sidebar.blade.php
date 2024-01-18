@@ -16,11 +16,11 @@
                     class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'report')) active @endif">
                     <i class='bi bi-box me-2'></i> Report
                 </a>
-                <a href=""
+                <a href="{{ route('school.index') }}"
                     class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'school')) active @endif">
                     <i class='bi bi-building me-2'></i> School
                 </a>
-                <a href=""
+                <a href="{{ route('student.index') }}"
                     class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'student')) active @endif">
                     <i class='bi bi-mortarboard me-2'></i> Student
                 </a>

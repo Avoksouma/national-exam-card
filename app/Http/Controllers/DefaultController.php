@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Application;
+use App\Models\School;
+use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -34,7 +37,11 @@ class DefaultController extends Controller
 
     public function dashboard()
     {
-        return view('dashboard.index');
+        $schools = School::count();
+        $students = Student::count();
+        $applications = Application::count();
+
+        return view('dashboard.index', compact('students', 'schools', 'applications'));
     }
 
     public function report()
