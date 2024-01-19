@@ -31,9 +31,21 @@ The Office National des Examens et Concours du Superieur commonly referred to as
 
 ## TODO
 
+-   [ ] student registers -> fills application form -> onec dis/approve application
+-   [ ] calendar
+-   [ ] message, notification
+-   [ ] exam results (transcript)
+-   [ ] past papers
+-   [ ] pay application fee
+
 ### Database Tables
 
--   [ ] User
--   [ ] Student
+-   [ ] User -> Student
 -   [ ] School
--   [ ] Student Application
+-   [ ] Application
+-   [ ] Subject
+-   [ ] Marks
+-   [ ] Paper
+-   [ ] Calendar Event
+-   [ ] Message
+-   [ ] Notification
