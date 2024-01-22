@@ -25,7 +25,7 @@ class CreateMarksTable extends Migration
             $table->unsignedBigInteger('student_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('student_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('subject_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
         });
     }
 
