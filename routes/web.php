@@ -2,10 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PaperController;
+use App\Http\Controllers\MarksController;
 use App\Http\Controllers\SchoolController;
+use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\DefaultController;
-use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\CalendarEventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +41,12 @@ Route::put('/dashboard/user/{user}', [AuthController::class, 'update'])->name('u
 Route::get('/dashboard/user/{user}/edit', [AuthController::class, 'edit'])->name('user.edit');
 
 Route::resources([
+    'paper' => PaperController::class,
+    'marks' => MarksController::class,
     'school' => SchoolController::class,
-    'student' => StudentController::class,
+    'message' => MessageController::class,
+    'subject' => SubjectController::class,
+    'calendar' => CalendarEventController::class,
     'application' => ApplicationController::class,
+    'notification' => NotificationController::class,
 ]);

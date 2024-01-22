@@ -4,14 +4,14 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('student.index') }}">Student</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Add Student</li>
+            <li class="breadcrumb-item"><a href="{{ route('application.index') }}">Student Application</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Add Appliction</li>
         </ol>
     </nav>
     <div class='d-flex justify-content-center align-items-center h-75'>
         <div class='text-center w-75'>
-            <form action='{{ route('student.store') }}' method='post' enctype="multipart/form-data">
-                <h2 class='mb-3'>New student</h2>
+            <form action='{{ route('application.store') }}' method='post' enctype="multipart/form-data">
+                <h2 class='mb-3'>New application</h2>
                 @include('components.message')
                 <div class='row'>
                     <div class='col-md-4'>
@@ -29,6 +29,15 @@
                                 <option value='{{ $school->id }}'>{{ $school->name }}</option>
                             @endforeach
                         </select>
+                    </div>
+                    <div class='col-md-4'>
+                        <input class='form-control mb-3' name='city' placeholder='city' value='{{ old('city') }}' />
+                    </div>
+                    <div class='col-md-4'>
+                        <input class='form-control mb-3' name='mother' placeholder='Mother' value='{{ old('mother') }}' />
+                    </div>
+                    <div class='col-md-4'>
+                        <input class='form-control mb-3' name='father' placeholder='Father' value='{{ old('father') }}' />
                     </div>
                     <div class='col-md-4'>
                         <select name="gender" class="form-select mbg-3">
@@ -63,8 +72,8 @@
                 @csrf
                 <div class='d-flex justify-content-between mt-3'>
                     <button type='submit' class='btn btn-primary rounded-pill w-10'>Submit</button>
-                    <a href='{{ route('student.index') }}' class='btn btn-outline-primary rounded-pill w-10'>
-                        All students
+                    <a href='{{ route('application.index') }}' class='btn btn-outline-primary rounded-pill w-10'>
+                        All applications
                     </a>
                 </div>
             </form>

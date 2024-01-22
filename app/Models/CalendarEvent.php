@@ -3,25 +3,19 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class School extends Model
+class CalendarEvent extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name', 'contact', 'image', 'description', 'user_id'
+        'title', 'time', 'color', 'description', 'user_id'
     ];
 
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function applications(): HasMany
-    {
-        return $this->hasMany(Application::class);
     }
 }

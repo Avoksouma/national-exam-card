@@ -2,7 +2,7 @@
     <div class='d-flex flex-column justify-content-between h-100'>
         <div>
             <div class='text-center'>
-                <img class='m-3 rounded-pill' alt='logo' src='/img/logo.png' height='100' width='100' />
+                <img class='m-3 rounded-pill' alt='logo' src='/img/logo.png' height='80' width='80' />
             </div>
             <div class="list-group list-group-flush">
                 <a href="{{ route('home') }}" class="list-group-item list-group-item-action">
@@ -20,13 +20,24 @@
                     class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'school')) active @endif">
                     <i class='bi bi-building me-2'></i> School
                 </a>
-                <a href="{{ route('student.index') }}"
-                    class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'student')) active @endif">
-                    <i class='bi bi-mortarboard me-2'></i> Student
-                </a>
-                <a href=""
+                <a href="{{ route('application.index') }}"
                     class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'application')) active @endif">
                     <i class='bi bi-collection me-2'></i> Student Application
+                </a>
+                <a href="" class="list-group-item list-group-item-action">
+                    <i class='bi bi-table me-2'></i> Exam Results
+                </a>
+                <a href="" class="list-group-item list-group-item-action">
+                    <i class='bi bi-calendar me-2'></i> Calendar
+                </a>
+                <a href="" class="list-group-item list-group-item-action">
+                    <i class='bi bi-bell me-2'></i> Notification
+                </a>
+                <a href="" class="list-group-item list-group-item-action">
+                    <i class='bi bi-chat me-2'></i> Message
+                </a>
+                <a href="" class="list-group-item list-group-item-action">
+                    <i class='bi bi-file-earmark-medical me-2'></i> Past Papers
                 </a>
                 <a href="{{ route('user.index') }}"
                     class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'user')) active @endif">

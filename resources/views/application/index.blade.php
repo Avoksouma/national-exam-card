@@ -4,15 +4,15 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Student</li>
+            <li class="breadcrumb-item active" aria-current="page">Student Application</li>
         </ol>
     </nav>
     <div class='d-flex justify-content-between'>
-        <h2>All students</h2>
+        <h2>All student applications</h2>
         @if (in_array(Auth::user()->role, ['admin', 'staff']))
             <span>
-                <a class='btn btn-outline-primary rounded-pill' href='{{ route('student.create') }}'>
-                    <i class='bi bi-plus'></i> Add student
+                <a class='btn btn-outline-primary rounded-pill' href='{{ route('application.create') }}'>
+                    <i class='bi bi-plus'></i> Add application
                 </a>
             </span>
         @endif
@@ -29,7 +29,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($students as $key => $student)
+            @foreach ($applications as $key => $student)
                 <tr>
                     <th scope="row">{{ $key + 1 }}</th>
                     <td>
@@ -45,10 +45,10 @@
                     <td>
                         @if (Auth::user()->role == 'sponsor')
                             <div class='btn-group'>
-                                <a class='btn btn-sm btn-success' href='{{ route('student.show', $student->id) }}'>
+                                <a class='btn btn-sm btn-success' href='{{ route('application.show', $student->id) }}'>
                                     <i class='bi bi-eye'></i>
                                 </a>
-                                <a href='{{ route('student.support', $student->id) }}' class='btn btn-sm btn-info'
+                                <a href='{{ route('application.support', $student->id) }}' class='btn btn-sm btn-info'
                                     data-toggle="tooltip" title="Sponsor child">
                                     <i class='bi bi-check'></i>
                                 </a>
@@ -56,14 +56,15 @@
                         @endif
                         @if (in_array(Auth::user()->role, ['admin', 'staff']))
                             <div class='btn-group'>
-                                <a class='btn btn-sm btn-success' href='{{ route('student.show', $student->id) }}'>
+                                <a class='btn btn-sm btn-success' href='{{ route('application.show', $student->id) }}'>
                                     <i class='bi bi-eye'></i>
                                 </a>
-                                <a class='btn btn-sm btn-info' href='{{ route('student.edit', $student->id) }}'>
+                                <a class='btn btn-sm btn-info' href='{{ route('application.edit', $student->id) }}'>
                                     <i class='bi bi-pencil'></i>
                                 </a>
                             </div>
-                            <form action='{{ route('student.destroy', $student->id) }}' method='post' class='d-inline'>
+                            <form action='{{ route('application.destroy', $student->id) }}' method='post'
+                                class='d-inline'>
                                 @csrf @method('delete')
                                 <button class='btn btn-sm btn-warning'>
                                     <i class='bi bi-trash'></i>
@@ -75,5 +76,5 @@
             @endforeach
         </tbody>
     </table>
-    {{ $students->links() }}
+    {{ $applications->links() }}
 @endsection
