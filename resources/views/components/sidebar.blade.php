@@ -25,6 +25,9 @@
                     <i class='bi bi-collection me-2'></i> Student Application
                 </a>
                 <a href="" class="list-group-item list-group-item-action">
+                    <i class='bi bi-star me-2'></i> Subjects
+                </a>
+                <a href="" class="list-group-item list-group-item-action">
                     <i class='bi bi-table me-2'></i> Exam Results
                 </a>
                 <a href="" class="list-group-item list-group-item-action">
