@@ -74,7 +74,6 @@ class SubjectController extends Controller
             'name' => $request['name'],
             'image' => $image ? $image_name : null,
             'description' => $request['description'],
-            'user_id' => Auth::id(),
         ]);
 
         return redirect()->route('subject.index');

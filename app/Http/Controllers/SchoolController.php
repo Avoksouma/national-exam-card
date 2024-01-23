@@ -78,7 +78,6 @@ class SchoolController extends Controller
             'contact' => $request['contact'],
             'image' => $image ? $image_name : null,
             'description' => $request['description'],
-            'user_id' => Auth::id(),
         ]);
 
         return redirect()->route('school.index');

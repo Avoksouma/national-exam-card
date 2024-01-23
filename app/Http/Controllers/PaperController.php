@@ -30,7 +30,7 @@ class PaperController extends Controller
     {
         $request->validate([
             'name' => ['required', 'min:3', 'max:50'],
-            'subject_id' => ['required'],
+            'subject' => ['required'],
             'document' => ['required'],
         ]);
 
@@ -42,7 +42,7 @@ class PaperController extends Controller
 
         Paper::create([
             'name' => $request['name'],
-            'subject_id' => $request['subject_id'],
+            'subject_id' => $request['subject'],
             'document' => $document ? $document_name : null,
             'description' => $request['description'],
             'user_id' => Auth::id(),
@@ -66,7 +66,7 @@ class PaperController extends Controller
     {
         $request->validate([
             'name' => ['required', 'min:3', 'max:50'],
-            'subject_id' => ['required'],
+            'subject' => ['required'],
             'document' => ['required'],
         ]);
 
@@ -78,10 +78,9 @@ class PaperController extends Controller
 
         $paper->update([
             'name' => $request['name'],
-            'subject_id' => $request['subject_id'],
+            'subject_id' => $request['subject'],
             'document' => $document ? $document_name : null,
             'description' => $request['description'],
-            'user_id' => Auth::id(),
         ]);
 
         return redirect()->route('paper.index');

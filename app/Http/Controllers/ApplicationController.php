@@ -113,7 +113,6 @@ class ApplicationController extends Controller
             'contact_details' => $request['contact_details'],
             'dob' => $request['dob'],
             'description' => $request['description'],
-            'user_id' => Auth::id(),
         ]);
 
         return redirect()->route('application.index');
