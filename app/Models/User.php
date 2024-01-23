@@ -44,13 +44,48 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function applications(): HasMany
+    {
+        return $this->hasMany(Application::class);
+    }
+
+    public function calendarEvents(): HasMany
+    {
+        return $this->hasMany(CalendarEvent::class);
+    }
+
+    public function marks(): HasMany
+    {
+        return $this->hasMany(Marks::class);
+    }
+
+    public function sentMessages(): HasMany
+    {
+        return $this->hasMany(Message::class, 'sender_id');
+    }
+
+    public function receivedMessages(): HasMany
+    {
+        return $this->hasMany(Message::class, 'receiver_id');
+    }
+
+    public function notifications(): HasMany
+    {
+        return $this->hasMany(Notification::class);
+    }
+
+    public function papers(): HasMany
+    {
+        return $this->hasMany(Paper::class);
+    }
+
     public function schools(): HasMany
     {
         return $this->hasMany(School::class);
     }
 
-    public function applications(): HasMany
+    public function subjects(): HasMany
     {
-        return $this->hasMany(Application::class);
+        return $this->hasMany(Subject::class);
     }
 }
