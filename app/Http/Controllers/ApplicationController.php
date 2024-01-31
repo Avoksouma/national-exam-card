@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\School;
 use App\Models\Application;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class ApplicationController extends Controller
 {
@@ -14,19 +16,19 @@ class ApplicationController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(): View
     {
         $applications = Application::paginate(10);
         return view('application.index', compact('applications'));
     }
 
-    public function create()
+    public function create(): View
     {
         $schools = School::all();
         return view('application.create', compact('schools'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $request->validate([
             'first_name' => ['required', 'min:3', 'max:50'],
@@ -67,18 +69,18 @@ class ApplicationController extends Controller
         return redirect()->route('application.index');
     }
 
-    public function show(Request $request, Application $application)
+    public function show(Request $request, Application $application): View
     {
         return view('application.show', compact('application'));
     }
 
-    public function edit(Request $request, Application $application)
+    public function edit(Request $request, Application $application): View
     {
         $schools = School::all();
         return view('application.edit', compact('application', 'schools'));
     }
 
-    public function update(Request $request, Application $application)
+    public function update(Request $request, Application $application): RedirectResponse
     {
         $request->validate([
             'first_name' => ['required', 'min:3', 'max:50'],
@@ -118,7 +120,7 @@ class ApplicationController extends Controller
         return redirect()->route('application.index');
     }
 
-    public function destroy(application $application)
+    public function destroy(application $application): RedirectResponse
     {
         $application->delete();
         return redirect()->route('application.index');

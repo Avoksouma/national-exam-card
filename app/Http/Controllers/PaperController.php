@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Paper;
 use App\Models\Subject;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class PaperController extends Controller
 {
@@ -14,19 +16,19 @@ class PaperController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(): View
     {
         $papers = Paper::paginate(10);
         return view('paper.index', compact('papers'));
     }
 
-    public function create()
+    public function create(): View
     {
         $subjects = Subject::all();
         return view('paper.create', compact('subjects'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $request->validate([
             'name' => ['required', 'min:3', 'max:50'],
@@ -51,18 +53,18 @@ class PaperController extends Controller
         return redirect()->route('paper.index');
     }
 
-    public function show(Request $request, Paper $paper)
+    public function show(Request $request, Paper $paper): View
     {
         return view('paper.show', compact('paper'));
     }
 
-    public function edit(Request $request, Paper $paper)
+    public function edit(Request $request, Paper $paper): View
     {
         $subjects = Subject::all();
         return view('paper.edit', compact('paper', 'subjects'));
     }
 
-    public function update(Request $request, Paper $paper)
+    public function update(Request $request, Paper $paper): RedirectResponse
     {
         $request->validate([
             'name' => ['required', 'min:3', 'max:50'],
@@ -86,7 +88,7 @@ class PaperController extends Controller
         return redirect()->route('paper.index');
     }
 
-    public function destroy(Paper $paper)
+    public function destroy(Paper $paper): RedirectResponse
     {
         $paper->delete();
         return redirect()->route('paper.index');

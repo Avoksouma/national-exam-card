@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\School;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class SchoolController extends Controller
 {
@@ -13,18 +15,18 @@ class SchoolController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(): View
     {
         $schools = School::paginate(10);
         return view('school.index', compact('schools'));
     }
 
-    public function create()
+    public function create(): View
     {
         return view('school.create');
     }
 
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $request->validate([
             'name' => ['required', 'min:3', 'max:50'],
@@ -49,17 +51,17 @@ class SchoolController extends Controller
         return redirect()->route('school.index');
     }
 
-    public function show(Request $request, School $school)
+    public function show(Request $request, School $school): View
     {
         return view('school.show', compact('school'));
     }
 
-    public function edit(Request $request, School $school)
+    public function edit(Request $request, School $school): View
     {
         return view('school.edit', compact('school'));
     }
 
-    public function update(Request $request, School $school)
+    public function update(Request $request, School $school): RedirectResponse
     {
         $request->validate([
             'name' => ['required', 'min:3', 'max:50'],
@@ -83,7 +85,7 @@ class SchoolController extends Controller
         return redirect()->route('school.index');
     }
 
-    public function destroy(School $school)
+    public function destroy(School $school): RedirectResponse
     {
         $school->delete();
         return redirect()->route('school.index');

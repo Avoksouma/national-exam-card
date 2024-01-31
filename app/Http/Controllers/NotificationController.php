@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Notification;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class NotificationController extends Controller
 {
@@ -13,18 +15,18 @@ class NotificationController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(): View
     {
         $notifications = Notification::paginate(10);
         return view('notification.index', compact('notifications'));
     }
 
-    public function create()
+    public function create(): View
     {
         return view('notification.create');
     }
 
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $request->validate([
             'url' => ['required', 'min:3', 'max:50'],
@@ -42,17 +44,17 @@ class NotificationController extends Controller
         return redirect()->route('notification.index');
     }
 
-    public function show(Request $request, Notification $notification)
+    public function show(Request $request, Notification $notification): View
     {
         return view('notification.show', compact('notification'));
     }
 
-    public function edit(Request $request, Notification $notification)
+    public function edit(Request $request, Notification $notification): View
     {
         return view('notification.edit', compact('notification'));
     }
 
-    public function update(Request $request, Notification $notification)
+    public function update(Request $request, Notification $notification): RedirectResponse
     {
         $request->validate([
             'url' => ['required', 'min:3', 'max:50'],
@@ -70,7 +72,7 @@ class NotificationController extends Controller
         return redirect()->route('notification.index');
     }
 
-    public function destroy(Notification $notification)
+    public function destroy(Notification $notification): RedirectResponse
     {
         $notification->delete();
         return redirect()->route('notification.index');
