@@ -40,10 +40,10 @@ The Office National des Examens et Concours du Superieur commonly referred to as
 
 ### Database Tables
 
--   [ ] User -> Student
--   [ ] School
--   [ ] Application
--   [ ] Subject
+-   [x] User -> Student
+-   [x] School
+-   [x] Application
+-   [x] Subject
 -   [ ] Marks
 -   [ ] Paper
 -   [ ] Calendar Event

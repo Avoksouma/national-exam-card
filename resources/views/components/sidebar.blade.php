@@ -28,11 +28,12 @@
                     class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'subject')) active @endif">
                     <i class='bi bi-star me-2'></i> Subjects
                 </a>
-                <a href="" class="list-group-item list-group-item-action">
-                    <i class='bi bi-table me-2'></i> Exam Results
+                <a href="{{ route('marks.index') }}"
+                    class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'marks')) active @endif">
+                    <i class='bi bi-clipboard-check me-2'></i> Marks
                 </a>
                 <a href="" class="list-group-item list-group-item-action">
-                    <i class='bi bi-calendar me-2'></i> Calendar
+                    <i class='bi bi-calendar-day me-2'></i> Calendar
                 </a>
                 <a href="" class="list-group-item list-group-item-action">
                     <i class='bi bi-bell me-2'></i> Notification
@@ -40,7 +41,8 @@
                 <a href="" class="list-group-item list-group-item-action">
                     <i class='bi bi-chat me-2'></i> Message
                 </a>
-                <a href="" class="list-group-item list-group-item-action">
+                <a href="{{ route('paper.index') }}"
+                    class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'paper')) active @endif">
                     <i class='bi bi-file-earmark-medical me-2'></i> Past Papers
                 </a>
                 <a href="{{ route('user.index') }}"

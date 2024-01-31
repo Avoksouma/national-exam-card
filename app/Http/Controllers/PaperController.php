@@ -69,7 +69,6 @@ class PaperController extends Controller
         $request->validate([
             'name' => ['required', 'min:3', 'max:50'],
             'subject' => ['required'],
-            'document' => ['required'],
         ]);
 
         $document = $request->file('document');
