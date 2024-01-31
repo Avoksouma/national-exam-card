@@ -44,8 +44,8 @@ The Office National des Examens et Concours du Superieur commonly referred to as
 -   [x] School
 -   [x] Application
 -   [x] Subject
--   [ ] Marks
--   [ ] Paper
+-   [x] Marks
+-   [x] Paper
 -   [ ] Calendar Event
 -   [ ] Message
 -   [ ] Notification

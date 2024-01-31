@@ -15,9 +15,9 @@ class CreateMarksTable extends Migration
     {
         Schema::create('marks', function (Blueprint $table) {
             $table->id();
-            $table->float('marks');
+            $table->integer('marks');
             $table->integer('semester');
-            $table->date('year');
+            $table->integer('year');
             $table->softDeletes();
             $table->timestamps();
             $table->unsignedBigInteger('user_id');

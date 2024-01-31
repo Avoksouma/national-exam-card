@@ -33,7 +33,7 @@
                     <i class='bi bi-clipboard-check me-2'></i> Marks
                 </a>
                 <a href="" class="list-group-item list-group-item-action">
-                    <i class='bi bi-calendar-day me-2'></i> Calendar
+                    <i class='bi bi-calendar-date me-2'></i> Calendar
                 </a>
                 <a href="" class="list-group-item list-group-item-action">
                     <i class='bi bi-bell me-2'></i> Notification

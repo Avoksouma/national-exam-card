@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Marks;
+use App\Models\Subject;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -24,8 +25,9 @@ class MarksController extends Controller
 
     public function create(): View
     {
-        $students = User::where('role', 'student')->all();
-        return view('marks.create', compact('students'));
+        $subjects = Subject::all();
+        $students = User::where('role', 'student')->get();
+        return view('marks.create', compact('students', 'subjects'));
     }
 
     public function store(Request $request): RedirectResponse
@@ -55,13 +57,14 @@ class MarksController extends Controller
         return view('marks.show', compact('marks'));
     }
 
-    public function edit(Request $request, Marks $marks): View
+    public function edit(Request $request, Marks $mark): View
     {
-        $students = User::where('role', 'student')->all();
-        return view('marks.edit', compact('marks', 'students'));
+        $subjects = Subject::all();
+        $students = User::where('role', 'student')->get();
+        return view('marks.edit', compact('mark', 'students', 'subjects'));
     }
 
-    public function update(Request $request, Marks $marks): RedirectResponse
+    public function update(Request $request, Marks $mark): RedirectResponse
     {
         $request->validate([
             'marks' => ['required'],
@@ -71,7 +74,7 @@ class MarksController extends Controller
             'student' => ['required'],
         ]);
 
-        $marks->update([
+        $mark->update([
             'marks' => $request['marks'],
             'semester' => $request['semester'],
             'year' => $request['year'],
@@ -82,9 +85,9 @@ class MarksController extends Controller
         return redirect()->route('marks.index');
     }
 
-    public function destroy(Marks $marks): RedirectResponse
+    public function destroy(Marks $mark): RedirectResponse
     {
-        $marks->delete();
+        $mark->delete();
         return redirect()->route('marks.index');
     }
 }
