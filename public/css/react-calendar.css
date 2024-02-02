@@ -1,0 +1,17 @@
+.box {
+  height: 100px;
+  min-width: 100px;
+  padding: 0 !important;
+}
+
+.box:hover {
+  font-size: 20px;
+  font-weight: bold;
+  transition-duration: 0.1s;
+}
+
+.eventBtn {
+  max-width: 200px;
+  border-radius: 0;
+  margin-bottom: 1px;
+}

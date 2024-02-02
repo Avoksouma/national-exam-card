@@ -32,7 +32,8 @@
                     class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'marks')) active @endif">
                     <i class='bi bi-clipboard-check me-2'></i> Marks
                 </a>
-                <a href="" class="list-group-item list-group-item-action">
+                <a href="{{ route('calendar.index') }}"
+                    class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'calendar')) active @endif">
                     <i class='bi bi-calendar-date me-2'></i> Calendar
                 </a>
                 <a href="" class="list-group-item list-group-item-action">

@@ -29,14 +29,16 @@ class CalendarEventController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'title' => ['required', 'min:3', 'max:50'],
+            'name' => ['required', 'min:3', 'max:50'],
             'description' => ['required'],
-            'time' => ['required'],
+            'start' => ['required'],
+            'stop' => ['required'],
         ]);
 
         CalendarEvent::create([
-            'title' => $request['title'],
-            'time' => $request['time'],
+            'name' => $request['name'],
+            'stop' => $request['stop'],
+            'start' => $request['start'],
             'color' => $request['color'],
             'description' => $request['description'],
             'user_id' => Auth::id(),
@@ -58,14 +60,16 @@ class CalendarEventController extends Controller
     public function update(Request $request, CalendarEvent $calendarEvent): RedirectResponse
     {
         $request->validate([
-            'title' => ['required', 'min:3', 'max:50'],
+            'name' => ['required', 'min:3', 'max:50'],
             'description' => ['required'],
-            'time' => ['required'],
+            'start' => ['required'],
+            'stop' => ['required'],
         ]);
 
         $calendarEvent->update([
-            'title' => $request['title'],
-            'time' => $request['time'],
+            'name' => $request['name'],
+            'stop' => $request['stop'],
+            'start' => $request['start'],
             'color' => $request['color'],
             'description' => $request['description'],
         ]);

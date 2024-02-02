@@ -15,8 +15,9 @@ class CreateCalendarEventsTable extends Migration
     {
         Schema::create('calendar_events', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->datetime('time');
+            $table->string('name');
+            $table->datetime('stop');
+            $table->datetime('start');
             $table->string('color')->nullable();
             $table->text('description')->nullable();
             $table->softDeletes();
