@@ -36,6 +36,7 @@ class ApplicationController extends Controller
             'last_name' => ['required', 'min:3', 'max:50'],
             'contact_person' => ['required', 'min:5', 'max:50'],
             'contact_details' => ['required', 'min:5', 'max:50'],
+            'gender' => ['required'],
             'school' => ['required'],
             'father' => ['required'],
             'mother' => ['required'],

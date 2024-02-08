@@ -35,8 +35,7 @@ The Office National des Examens et Concours du Superieur commonly referred to as
 -   [ ] calendar
 -   [ ] message, notification
 -   [ ] exam results (transcript)
--   [ ] past papers
--   [ ] pay application fee
+-   [ ] student dashboard
 
 ### Database Tables
 
@@ -49,3 +48,4 @@ The Office National des Examens et Concours du Superieur commonly referred to as
 -   [ ] Calendar Event
 -   [ ] Message
 -   [ ] Notification
+-   [ ] Combination
