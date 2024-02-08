@@ -8,26 +8,30 @@
                 <a href="{{ route('home') }}" class="list-group-item list-group-item-action">
                     <i class='bi bi-house me-2'></i> Home
                 </a>
-                <a href="{{ route('dashboard') }}"
-                    class="list-group-item list-group-item-action @if (Route::currentRouteName() == 'dashboard') active @endif">
-                    <i class='bi bi-speedometer2 me-2'></i> Dashboard
-                </a>
-                <a href=""
-                    class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'report')) active @endif">
-                    <i class='bi bi-box me-2'></i> Report
-                </a>
-                <a href="{{ route('school.index') }}"
-                    class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'school')) active @endif">
-                    <i class='bi bi-building me-2'></i> School
-                </a>
+                @if (in_array(Auth::user()->role, ['staff', 'admin']))
+                    <a href="{{ route('dashboard') }}"
+                        class="list-group-item list-group-item-action @if (Route::currentRouteName() == 'dashboard') active @endif">
+                        <i class='bi bi-speedometer2 me-2'></i> Dashboard
+                    </a>
+                    <a href=""
+                        class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'report')) active @endif">
+                        <i class='bi bi-box me-2'></i> Report
+                    </a>
+                    <a href="{{ route('school.index') }}"
+                        class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'school')) active @endif">
+                        <i class='bi bi-building me-2'></i> School
+                    </a>
+                @endif
                 <a href="{{ route('application.index') }}"
                     class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'application')) active @endif">
                     <i class='bi bi-collection me-2'></i> Student Application
                 </a>
-                <a href="{{ route('subject.index') }}"
-                    class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'subject')) active @endif">
-                    <i class='bi bi-star me-2'></i> Subjects
-                </a>
+                @if (in_array(Auth::user()->role, ['staff', 'admin']))
+                    <a href="{{ route('subject.index') }}"
+                        class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'subject')) active @endif">
+                        <i class='bi bi-star me-2'></i> Subjects
+                    </a>
+                @endif
                 <a href="{{ route('marks.index') }}"
                     class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'marks')) active @endif">
                     <i class='bi bi-clipboard-check me-2'></i> Marks
@@ -46,10 +50,12 @@
                     class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'paper')) active @endif">
                     <i class='bi bi-file-earmark-medical me-2'></i> Past Papers
                 </a>
-                <a href="{{ route('user.index') }}"
-                    class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'user')) active @endif">
-                    <i class='bi bi-people me-2'></i> User
-                </a>
+                @if (in_array(Auth::user()->role, ['staff', 'admin']))
+                    <a href="{{ route('user.index') }}"
+                        class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'user')) active @endif">
+                        <i class='bi bi-people me-2'></i> User
+                    </a>
+                @endif
                 <a href="" class="list-group-item list-group-item-action">
                     <i class='bi bi-person-circle me-2'></i> Profile
                 </a>

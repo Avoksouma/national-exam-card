@@ -9,13 +9,11 @@
     </nav>
     <div class='d-flex justify-content-between'>
         <h2>All student applications</h2>
-        @if (in_array(Auth::user()->role, ['admin', 'staff']))
-            <span>
-                <a class='btn btn-outline-primary rounded-pill' href='{{ route('application.create') }}'>
-                    <i class='bi bi-plus'></i> Add application
-                </a>
-            </span>
-        @endif
+        <span>
+            <a class='btn btn-outline-primary rounded-pill' href='{{ route('application.create') }}'>
+                <i class='bi bi-plus'></i> Add application
+            </a>
+        </span>
     </div>
     <table class="table table-bordered table-hover">
         <thead class="table-light">

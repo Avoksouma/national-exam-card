@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Application;
 use App\Models\School;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class DefaultController extends Controller
@@ -34,8 +36,10 @@ class DefaultController extends Controller
         return view('license');
     }
 
-    public function dashboard(): View
+    public function dashboard(): View | RedirectResponse
     {
+        if (Auth::user()->role == 'student') return redirect()->route('application.index');
+
         $schools = School::count();
         $applications = Application::count();
         $students = User::where('role', 'student')->count();

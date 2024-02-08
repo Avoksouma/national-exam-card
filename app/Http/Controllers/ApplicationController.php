@@ -18,7 +18,8 @@ class ApplicationController extends Controller
 
     public function index(): View
     {
-        $applications = Application::paginate(10);
+        if (Auth::user()->role == 'student') $applications = Application::where('user_id', Auth::id())->paginate(10);
+        else $applications = Application::paginate(10);
         return view('application.index', compact('applications'));
     }
 
