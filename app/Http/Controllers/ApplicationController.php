@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\School;
 use App\Models\Application;
+use App\Models\Combination;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,7 +27,8 @@ class ApplicationController extends Controller
     public function create(): View
     {
         $schools = School::all();
-        return view('application.create', compact('schools'));
+        $combinations = Combination::all();
+        return view('application.create', compact('schools', 'combinations'));
     }
 
     public function store(Request $request): RedirectResponse
@@ -34,8 +36,9 @@ class ApplicationController extends Controller
         $request->validate([
             'first_name' => ['required', 'min:3', 'max:50'],
             'last_name' => ['required', 'min:3', 'max:50'],
-            'contact_person' => ['required', 'min:5', 'max:50'],
+            'contact_person' => ['required', 'min:3', 'max:50'],
             'contact_details' => ['required', 'min:5', 'max:50'],
+            'combination' => ['required'],
             'gender' => ['required'],
             'school' => ['required'],
             'father' => ['required'],
@@ -59,6 +62,7 @@ class ApplicationController extends Controller
             'father' => $request['father'],
             'mother' => $request['mother'],
             'city' => $request['city'],
+            'combination_id' => $request['combination'],
             'nationality' => $request['nationality'],
             'image' => $image ? $image_name : null,
             'contact_person' => $request['contact_person'],
@@ -79,7 +83,8 @@ class ApplicationController extends Controller
     public function edit(Request $request, Application $application): View
     {
         $schools = School::all();
-        return view('application.edit', compact('application', 'schools'));
+        $combinations = Combination::all();
+        return view('application.edit', compact('application', 'schools', 'combinations'));
     }
 
     public function update(Request $request, Application $application): RedirectResponse
@@ -87,8 +92,9 @@ class ApplicationController extends Controller
         $request->validate([
             'first_name' => ['required', 'min:3', 'max:50'],
             'last_name' => ['required', 'min:3', 'max:50'],
-            'contact_person' => ['required', 'min:5', 'max:50'],
+            'contact_person' => ['required', 'min:3', 'max:50'],
             'contact_details' => ['required', 'min:5', 'max:50'],
+            'combination' => ['required'],
             'school' => ['required'],
             'father' => ['required'],
             'mother' => ['required'],
@@ -111,6 +117,7 @@ class ApplicationController extends Controller
             'father' => $request['father'],
             'mother' => $request['mother'],
             'city' => $request['city'],
+            'combination_id' => $request['combination'],
             'nationality' => $request['nationality'],
             'image' => $image ? $image_name : null,
             'contact_person' => $request['contact_person'],

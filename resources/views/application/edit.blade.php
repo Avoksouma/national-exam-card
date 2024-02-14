@@ -31,6 +31,14 @@
                         </select>
                     </div>
                     <div class='col-md-4'>
+                        <select name="combination" class="form-select mb-3">
+                            <option value="{{ $application->combination_id }}">{{ $application->combination->name }}</option>
+                            @foreach ($combinations as $combination)
+                                <option value='{{ $combination->id }}'>{{ $combination->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class='col-md-4'>
                         <input class='form-control mb-3' name='city' placeholder='city'
                             value='{{ $application->city }}' />
                     </div>

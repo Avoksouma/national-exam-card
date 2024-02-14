@@ -9,7 +9,7 @@
         </ol>
     </nav>
     <div class='d-flex justify-content-center align-items-center h-75'>
-        <div class='text-center w-75'>
+        <div class='w-75'>
             <form action='{{ route('application.store') }}' method='post' enctype="multipart/form-data">
                 <h2 class='mb-3'>New application</h2>
                 @include('components.message')
@@ -31,7 +31,12 @@
                         </select>
                     </div>
                     <div class='col-md-4'>
-                        <input class='form-control mb-3' name='city' placeholder='city' value='{{ old('city') }}' />
+                        <select name="combination" class="form-select mb-3">
+                            <option value="">- select combination -</option>
+                            @foreach ($combinations as $combination)
+                                <option value='{{ $combination->id }}'>{{ $combination->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class='col-md-4'>
                         <input class='form-control mb-3' name='mother' placeholder='Mother' value='{{ old('mother') }}' />
@@ -39,7 +44,7 @@
                     <div class='col-md-4'>
                         <input class='form-control mb-3' name='father' placeholder='Father' value='{{ old('father') }}' />
                     </div>
-                    <div class='col-md-4'>
+                    <div class='col-md-3'>
                         <select name="gender" class="form-select mbg-3">
                             <option value="">- select gender -</option>
                             <option value="male">male</option>
@@ -47,22 +52,24 @@
                             <option value="other">other</option>
                         </select>
                     </div>
-                    <div class='col-md-4'>
+                    <div class='col-md-3'>
+                        <input class='form-control mb-3' name='city' placeholder='city' value='{{ old('city') }}' />
+                    </div>
+                    <div class='col-md-3'>
                         <input class='form-control mb-3' name='contact_person' placeholder='contact person name'
                             value='{{ old('contact_person') }}' />
                     </div>
-                    <div class='col-md-4'>
-                        <input class='form-control mb-3' name='contact_details' placeholder='contact details (phone, email)'
+                    <div class='col-md-3'>
+                        <input class='form-control mb-3' name='contact_details' placeholder='contact (phone, email)'
                             value='{{ old('contact_details') }}' />
                     </div>
                     <div class='col-md-6'>
-                        <div class="input-group mb-3">
-                            <span class="input-group-text">Birth date</span>
-                            <input class='form-control' name='dob' placeholder='date of birth' type='date'
-                                value='{{ old('dob') }}' />
-                        </div>
+                        <label for="dob">Date of birth</label>
+                        <input class='form-control' name='dob' placeholder='date of birth' type='date'
+                            value='{{ old('dob') }}' />
                     </div>
                     <div class="col-md-6">
+                        <label for="image">Profile Picture</label>
                         <input class='form-control mb-3' name='image' type='file' accept="image/*" />
                     </div>
                 </div>

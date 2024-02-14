@@ -61,14 +61,13 @@
                                     <i class='bi bi-pencil'></i>
                                 </a>
                             </div>
-                            <form action='{{ route('application.destroy', $student->id) }}' method='post'
-                                class='d-inline'>
-                                @csrf @method('delete')
-                                <button class='btn btn-sm btn-warning'>
-                                    <i class='bi bi-trash'></i>
-                                </button>
-                            </form>
                         @endif
+                        <form action='{{ route('application.destroy', $student->id) }}' method='post' class='d-inline'>
+                            @csrf @method('delete')
+                            <button class='btn btn-sm btn-warning'>
+                                <i class='bi bi-trash'></i>
+                            </button>
+                        </form>
                     </td>
                 </tr>
             @endforeach

@@ -25,7 +25,8 @@ class Application extends Model
         'approved',
         'city',
         'user_id',
-        'school_id'
+        'school_id',
+        'combination_id'
     ];
 
 
@@ -34,6 +35,11 @@ class Application extends Model
         return $this->belongsTo(School::class);
     }
 
+
+    public function combination(): BelongsTo
+    {
+        return $this->belongsTo(Combination::class);
+    }
 
     public function user(): BelongsTo
     {

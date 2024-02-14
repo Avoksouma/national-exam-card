@@ -8,11 +8,11 @@
                 <a href="{{ route('home') }}" class="list-group-item list-group-item-action">
                     <i class='bi bi-house me-2'></i> Home
                 </a>
+                <a href="{{ route('dashboard') }}"
+                    class="list-group-item list-group-item-action @if (Route::currentRouteName() == 'dashboard') active @endif">
+                    <i class='bi bi-speedometer2 me-2'></i> Dashboard
+                </a>
                 @if (in_array(Auth::user()->role, ['staff', 'admin']))
-                    <a href="{{ route('dashboard') }}"
-                        class="list-group-item list-group-item-action @if (Route::currentRouteName() == 'dashboard') active @endif">
-                        <i class='bi bi-speedometer2 me-2'></i> Dashboard
-                    </a>
                     <a href=""
                         class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'report')) active @endif">
                         <i class='bi bi-box me-2'></i> Report
@@ -33,7 +33,7 @@
                     </a>
                     <a href="{{ route('combination.index') }}"
                         class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'combination')) active @endif">
-                        <i class='bi bi-star me-2'></i> Combinations
+                        <i class='bi bi-boxes me-2'></i> Combinations
                     </a>
                 @endif
                 <a href="{{ route('marks.index') }}"

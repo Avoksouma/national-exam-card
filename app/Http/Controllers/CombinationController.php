@@ -29,7 +29,7 @@ class CombinationController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'min:3', 'max:50'],
+            'name' => ['required'],
             'image' => ['image'],
         ]);
 
@@ -62,7 +62,7 @@ class CombinationController extends Controller
     public function update(Request $request, Combination $combination): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'min:3', 'max:50'],
+            'name' => ['required'],
             'image' => ['image'],
         ]);
 

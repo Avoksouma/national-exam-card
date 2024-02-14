@@ -36,9 +36,12 @@ class DefaultController extends Controller
         return view('license');
     }
 
-    public function dashboard(): View | RedirectResponse
+    public function dashboard(): View
     {
-        if (Auth::user()->role == 'student') return redirect()->route('application.index');
+        if (Auth::user()->role == 'student') {
+            $applications = Application::where('user_id', Auth::id())->limit(10)->get();
+            return view('dashboard.index', compact('applications'));
+        }
 
         $schools = School::count();
         $applications = Application::count();
