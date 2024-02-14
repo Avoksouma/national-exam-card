@@ -22,9 +22,6 @@
                         <th>Birth date</th>
                         <th>Mother</th>
                         <th>Father</th>
-                        <th>City</th>
-                        <th>Contact Person</th>
-                        <th>Contact Details</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,13 +31,24 @@
                         <td>{{ $application->dob }}</td>
                         <td>{{ $application->mother }}</td>
                         <td>{{ $application->father }}</td>
+                    </tr>
+                    <tr>
+                        <th>Combination</th>
+                        <th>Gender</th>
+                        <th>City</th>
+                        <th>Contact Person</th>
+                        <th>Contact Details</th>
+                    </tr>
+                    <tr>
+                        <td>{{ $application->combination->name }}</td>
+                        <td>{{ $application->gender }}</td>
                         <td>{{ $application->city }}</td>
                         <td>{{ $application->contact_person }}</td>
                         <td>{{ $application->contact_details }}</td>
                     </tr>
                     <tr>
                         <th>Description</th>
-                        <td colspan="7">{!! $application->description !!}</td>
+                        <td colspan="4">{!! $application->description !!}</td>
                     </tr>
                 </tbody>
             </table>

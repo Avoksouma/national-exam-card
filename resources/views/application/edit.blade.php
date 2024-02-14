@@ -9,9 +9,9 @@
         </ol>
     </nav>
     <div class='d-flex justify-content-center align-items-center h-75'>
-        <div class='text-center w-75'>
+        <div class='w-75'>
             <form action='{{ route('application.update', $application->id) }}' method='post' enctype="multipart/form-data">
-                <h2 class='mb-3'>Edit student details</h2>
+                <h2 class='mb-3'>Edit application details</h2>
                 @include('components.message')
                 <div class='row'>
                     <div class='col-md-4'>
@@ -32,15 +32,12 @@
                     </div>
                     <div class='col-md-4'>
                         <select name="combination" class="form-select mb-3">
-                            <option value="{{ $application->combination_id }}">{{ $application->combination->name }}</option>
+                            <option value="{{ $application->combination_id }}">{{ $application->combination->name }}
+                            </option>
                             @foreach ($combinations as $combination)
                                 <option value='{{ $combination->id }}'>{{ $combination->name }}</option>
                             @endforeach
                         </select>
-                    </div>
-                    <div class='col-md-4'>
-                        <input class='form-control mb-3' name='city' placeholder='city'
-                            value='{{ $application->city }}' />
                     </div>
                     <div class='col-md-4'>
                         <input class='form-control mb-3' name='mother' placeholder='Mother'
@@ -50,7 +47,7 @@
                         <input class='form-control mb-3' name='father' placeholder='Father'
                             value='{{ $application->father }}' />
                     </div>
-                    <div class='col-md-4'>
+                    <div class='col-md-3'>
                         <select name="gender" class="form-select mbg-3">
                             <option value="{{ $application->gender }}">{{ $application->gender }}</option>
                             <option value="male">male</option>
@@ -58,22 +55,25 @@
                             <option value="other">other</option>
                         </select>
                     </div>
-                    <div class='col-md-4'>
+                    <div class='col-md-3'>
+                        <input class='form-control mb-3' name='city' placeholder='city'
+                            value='{{ $application->city }}' />
+                    </div>
+                    <div class='col-md-3'>
                         <input class='form-control mb-3' name='contact_person' placeholder='contact person name'
                             value='{{ $application->contact_person }}' />
                     </div>
-                    <div class='col-md-4'>
+                    <div class='col-md-3'>
                         <input class='form-control mb-3' name='contact_details' placeholder='contact details (phone, email)'
                             value='{{ $application->contact_details }}' />
                     </div>
                     <div class='col-md-6'>
-                        <div class="input-group mb-3">
-                            <span class="input-group-text">Birth date</span>
-                            <input class='form-control' name='dob' placeholder='date of birth' type='date'
-                                value='{{ $application->dob }}' />
-                        </div>
+                        <label for="dob">Date of birth</label>
+                        <input class='form-control' name='dob' placeholder='date of birth' type='date'
+                            value='{{ $application->dob }}' />
                     </div>
                     <div class="col-md-6">
+                        <label for="image">Profile Picture</label>
                         <input class='form-control mb-3' name='image' type='file' accept="image/*" />
                     </div>
                 </div>
