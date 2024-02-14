@@ -31,6 +31,10 @@
                         class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'subject')) active @endif">
                         <i class='bi bi-star me-2'></i> Subjects
                     </a>
+                    <a href="{{ route('combination.index') }}"
+                        class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'combination')) active @endif">
+                        <i class='bi bi-star me-2'></i> Combinations
+                    </a>
                 @endif
                 <a href="{{ route('marks.index') }}"
                     class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'marks')) active @endif">

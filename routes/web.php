@@ -8,6 +8,7 @@ use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\DefaultController;
+use App\Http\Controllers\CombinationController;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\CalendarEventController;
@@ -47,6 +48,7 @@ Route::resources([
     'message' => MessageController::class,
     'subject' => SubjectController::class,
     'calendar' => CalendarEventController::class,
+    'combination' => CombinationController::class,
     'application' => ApplicationController::class,
     'notification' => NotificationController::class,
 ]);
