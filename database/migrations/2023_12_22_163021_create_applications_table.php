@@ -18,6 +18,7 @@ class CreateApplicationsTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->enum('gender', ['male', 'female', 'other'])->default('other');
+            $table->string('status')->default('pending');
             $table->string('city')->nullable();
             $table->string('father')->nullable();
             $table->string('mother')->nullable();

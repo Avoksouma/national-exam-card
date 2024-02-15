@@ -18,6 +18,7 @@ class Application extends Model
         'contact_person',
         'contact_details',
         'image',
+        'status',
         'description',
         'dob',
         'father',

@@ -63,15 +63,25 @@
                         <input class='form-control mb-3' name='contact_details' placeholder='contact (phone, email)'
                             value='{{ old('contact_details') }}' />
                     </div>
-                    <div class='col-md-6'>
+                    <div class='col-md-4'>
                         <label for="dob">Date of birth</label>
                         <input class='form-control' name='dob' placeholder='date of birth' type='date'
                             value='{{ old('dob') }}' />
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <label for="image">Profile Picture</label>
                         <input class='form-control mb-3' name='image' type='file' accept="image/*" />
                     </div>
+                    @if (in_array(Auth::user()->role, ['staff', 'admin']))
+                        <div class='col-md-4'>
+                            <select name="status" class="form-select mbg-3">
+                                <option value="">- select status -</option>
+                                <option value="pending">pending</option>
+                                <option value="approved">approved</option>
+                                <option value="rejected">rejected</option>
+                            </select>
+                        </div>
+                    @endif
                 </div>
                 <textarea id='editor' class='form-control' name='description' placeholder="write more details">
                     {{ old('description') }}

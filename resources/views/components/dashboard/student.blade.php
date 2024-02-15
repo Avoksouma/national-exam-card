@@ -7,6 +7,7 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">Name</th>
+            <th scope="col">Status</th>
             <th scope="col">Birth Date</th>
             <th scope="col">School</th>
             <th scope="col">Contact Person</th>
@@ -24,6 +25,7 @@
                     @endif
                     {{ $student->first_name }} {{ $student->last_name }}
                 </td>
+                <td>{{ $student->status }}</td>
                 <td>{{ $student->dob }}</td>
                 <td>{{ $student->school->name }}</td>
                 <td>{{ $student->contact_person }} {{ $student->contact_details }}</td>
