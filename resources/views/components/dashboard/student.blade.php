@@ -3,17 +3,19 @@
 </a>
 
 <table class="table table-bordered table-hover mt-3">
-    <thead class="table-light">
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Status</th>
-            <th scope="col">Birth Date</th>
-            <th scope="col">School</th>
-            <th scope="col">Contact Person</th>
-            <th scope="col">Action</th>
-        </tr>
-    </thead>
+    @if ($applications->count())
+        <thead class="table-light">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Status</th>
+                <th scope="col">Birth Date</th>
+                <th scope="col">School</th>
+                <th scope="col">Contact Person</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+    @endif
     <tbody>
         @foreach ($applications as $key => $student)
             <tr>
