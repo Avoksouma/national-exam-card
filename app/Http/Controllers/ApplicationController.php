@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\School;
 use App\Models\Application;
 use App\Models\Combination;
+use App\Models\Notification;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -62,7 +63,7 @@ class ApplicationController extends Controller
             'father' => $request['father'],
             'mother' => $request['mother'],
             'city' => $request['city'],
-            'status' => $request['status'],
+            'status' => $request['status'] ?: 'pending',
             'combination_id' => $request['combination'],
             'nationality' => $request['nationality'],
             'image' => $image ? $image_name : null,
@@ -109,6 +110,14 @@ class ApplicationController extends Controller
             $image_name = time() . '.' . $image->getClientOriginalExtension();
             $image->storeAs('public', $image_name);
         }
+
+        if ($request['status'] == 'approved')
+            Notification::create([
+                'title' => 'Application Approved',
+                'url' => "/application/" . $application->id,
+                'content' => 'Your student application has been approved, you are now eligible to do the national exam',
+                'user_id' => $application->user_id,
+            ]);
 
         $application->update([
             'first_name' => $request['first_name'],

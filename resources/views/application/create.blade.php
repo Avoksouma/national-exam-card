@@ -74,6 +74,7 @@
                     </div>
                     @if (in_array(Auth::user()->role, ['staff', 'admin']))
                         <div class='col-md-4'>
+                            <label for="status">Status</label>
                             <select name="status" class="form-select mbg-3">
                                 <option value="">- select status -</option>
                                 <option value="pending">pending</option>

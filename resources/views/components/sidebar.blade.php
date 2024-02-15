@@ -44,11 +44,18 @@
                     class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'calendar')) active @endif">
                     <i class='bi bi-calendar-date me-2'></i> Calendar
                 </a>
-                <a href="" class="list-group-item list-group-item-action">
+                <a href="{{ route('notification.index') }}"
+                    class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'notification')) active @endif">
                     <i class='bi bi-bell me-2'></i> Notification
+                    <span class='badge bg-info float-end'>
+                        {{ Auth::user()->notifications->count() }}
+                    </span>
                 </a>
                 <a href="" class="list-group-item list-group-item-action">
                     <i class='bi bi-chat me-2'></i> Message
+                    <span class='badge bg-info float-end'>
+                        {{ Auth::user()->receivedMessages->count() }}
+                    </span>
                 </a>
                 <a href="{{ route('paper.index') }}"
                     class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'paper')) active @endif">

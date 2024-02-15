@@ -47,7 +47,11 @@
                         <td>{{ $application->contact_details }}</td>
                     </tr>
                     <tr>
-                        <th>Description</th>
+                        <th>Status</th>
+                        <th colspan='4'>Description</th>
+                    </tr>
+                    <tr>
+                        <td>{{ $application->status }}</td>
                         <td colspan="4">{!! $application->description !!}</td>
                     </tr>
                 </tbody>
