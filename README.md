@@ -37,6 +37,7 @@ The Office National des Examens et Concours du Superieur commonly referred to as
 -   [ ] exam results (transcript)
 -   [ ] student dashboard
 -   [ ] seeder: marks, applications
+-   [ ] report: subject, school, student
 
 ### Database Tables
 
