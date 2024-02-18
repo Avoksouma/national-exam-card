@@ -33,9 +33,10 @@ The Office National des Examens et Concours du Superieur commonly referred to as
 
 -   [ ] student registers -> fills application form -> onec dis/approve application
 -   [ ] calendar
--   [ ] message, notification
+-   [ ] message
 -   [ ] exam results (transcript)
 -   [ ] student dashboard
+-   [ ] seeder: marks, applications
 
 ### Database Tables
 
