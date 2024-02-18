@@ -17,7 +17,7 @@ class SchoolFactory extends Factory
      */
     public function definition()
     {
-        $userIds = User::pluck('id')->toArray();
+        $userIds = User::where('role', '!=', 'student')->pluck('id')->toArray();
         $schools =  ['St Joseph', 'St Patrick', 'St Francis', 'St Bosco', 'GS Kacyiru', 'GS Kanombe', 'Apaper', 'Apade', 'IFAK', 'St Leon'];
 
         return [

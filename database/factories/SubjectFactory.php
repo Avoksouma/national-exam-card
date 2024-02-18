@@ -17,7 +17,7 @@ class SubjectFactory extends Factory
      */
     public function definition()
     {
-        $userIds = User::pluck('id')->toArray();
+        $userIds = User::where('role', '!=', 'student')->pluck('id')->toArray();
         $subjects =  ['English', 'French', 'Biology', 'Math', 'Geography', 'Physics', 'History', 'Religion', 'Swahili', 'Chemistry', 'Agriculture', 'Business'];
 
         return [

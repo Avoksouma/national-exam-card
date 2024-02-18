@@ -18,7 +18,7 @@ class CombinationFactory extends Factory
      */
     public function definition()
     {
-        $userIds = User::pluck('id')->toArray();
+        $userIds = User::where('role', '!=', 'student')->pluck('id')->toArray();
 
         return [
             'name' => Str::random(1),
