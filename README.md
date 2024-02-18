@@ -48,5 +48,5 @@ The Office National des Examens et Concours du Superieur commonly referred to as
 -   [x] Paper
 -   [ ] Calendar Event
 -   [ ] Message
--   [ ] Notification
--   [ ] Combination
+-   [x] Notification
+-   [x] Combination
