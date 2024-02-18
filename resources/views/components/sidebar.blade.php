@@ -66,6 +66,10 @@
                         class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'user')) active @endif">
                         <i class='bi bi-people me-2'></i> User
                     </a>
+                    <a href="{{ route('student.index') }}"
+                        class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'student')) active @endif">
+                        <i class='bi bi-people me-2'></i> Students
+                    </a>
                 @endif
                 <a href="" class="list-group-item list-group-item-action">
                     <i class='bi bi-person-circle me-2'></i> Profile

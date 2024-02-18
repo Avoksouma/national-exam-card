@@ -14,7 +14,7 @@ class AuthController extends Controller
     public function __construct()
     {
         // $this->middleware('admin')->only(['users', 'update', 'edit']);
-        $this->middleware('guest')->except(['logout', 'users', 'profile', 'edit', 'update']);
+        $this->middleware('guest')->except(['logout', 'users', 'students', 'profile', 'edit', 'update']);
     }
 
     public function showLogin(): View
@@ -92,8 +92,16 @@ class AuthController extends Controller
 
     public function users(): View
     {
-        $users = User::paginate(10);
-        return view('user.index', compact('users'));
+        $title = 'users';
+        $users = User::where('role', '!=', 'student')->paginate(10);
+        return view('user.index', compact('users', 'title'));
+    }
+
+    public function students(): View
+    {
+        $title = 'students';
+        $users = User::where('role', 'student')->paginate(10);
+        return view('user.index', compact('users', 'title'));
     }
 
     public function profile(User $user): View
