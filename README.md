@@ -31,7 +31,6 @@ The Office National des Examens et Concours du Superieur commonly referred to as
 
 ## TODO
 
--   [ ] student registers -> fills application form -> onec dis/approve application
 -   [ ] calendar
 -   [ ] message
 -   [ ] exam results (transcript)
