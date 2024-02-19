@@ -20,7 +20,7 @@ class MarksController extends Controller
     public function index(): View
     {
         if (Auth::user()->role == 'student') $marks = Marks::where('student_id', Auth::id())->paginate(10);
-        $marks = Marks::paginate(10);
+        else $marks = Marks::paginate(10);
         return view('marks.index', compact('marks'));
     }
 
