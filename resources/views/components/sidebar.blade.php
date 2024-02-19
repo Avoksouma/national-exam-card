@@ -13,7 +13,7 @@
                     <i class='bi bi-speedometer2 me-2'></i> Dashboard
                 </a>
                 @if (in_array(Auth::user()->role, ['staff', 'admin']))
-                    <a href=""
+                    <a href="{{ route('report') }}"
                         class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'report')) active @endif">
                         <i class='bi bi-box me-2'></i> Report
                     </a>

@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Application;
 use App\Models\School;
 use App\Models\User;
-use Illuminate\Http\RedirectResponse;
+use App\Models\Marks;
+use App\Models\Subject;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 class DefaultController extends Controller
@@ -50,8 +53,22 @@ class DefaultController extends Controller
         return view('dashboard.index', compact('students', 'schools', 'applications'));
     }
 
-    public function report(): View
+    public function report(): View | JsonResponse
     {
-        return view('dashboard.report');
+        $subjects = Subject::all();
+        $students = User::where('role', 'student')->get();
+        $topMarksByYear = Marks::select('*', DB::raw('MAX(marks) as max_marks'))
+            ->groupBy('year')
+            ->get();
+
+        $topMarksBySubject = Marks::select('*', DB::raw('MAX(marks) as max_marks'))
+            ->groupBy('subject_id')
+            ->get();
+
+        $topMarksByStudent = Marks::select('*', DB::raw('MAX(marks) as max_marks'))
+            ->groupBy('student_id')
+            ->get();
+
+        return view('dashboard.report', compact('subjects', 'students', 'topMarksByYear', 'topMarksBySubject', 'topMarksByStudent'));
     }
 }
