@@ -57,18 +57,27 @@ class DefaultController extends Controller
     {
         $subjects = Subject::all();
         $students = User::where('role', 'student')->get();
-        $topMarksByYear = Marks::select('*', DB::raw('MAX(marks) as max_marks'))
-            ->groupBy('year')
+        $topMarksByYear = Marks::select('marks.*')
+            ->join(DB::raw('(select year, MAX(marks) as max_marks from marks group by year) as max_marks_table'), function ($join) {
+                $join->on('marks.year', '=', 'max_marks_table.year');
+                $join->on('marks.marks', '=', 'max_marks_table.max_marks');
+            })
             ->get();
 
-        $topMarksBySubject = Marks::select('*', DB::raw('MAX(marks) as max_marks'))
-            ->groupBy('subject_id')
+        $topMarksBySubject = Marks::select('marks.*')
+            ->join(DB::raw('(select subject_id, MAX(marks) as max_marks from marks group by subject_id) as max_marks_table'), function ($join) {
+                $join->on('marks.subject_id', '=', 'max_marks_table.subject_id');
+                $join->on('marks.marks', '=', 'max_marks_table.max_marks');
+            })
             ->get();
 
-        $topMarksByStudent = Marks::select('*', DB::raw('MAX(marks) as max_marks'))
-            ->groupBy('student_id')
+        $topMarksByStudent = Marks::select('marks.*')
+            ->join(DB::raw('(select student_id, MAX(marks) as max_marks from marks group by student_id) as max_marks_table'), function ($join) {
+                $join->on('marks.student_id', '=', 'max_marks_table.student_id');
+                $join->on('marks.marks', '=', 'max_marks_table.max_marks');
+            })
             ->get();
-
+        
         return view('dashboard.report', compact('subjects', 'students', 'topMarksByYear', 'topMarksBySubject', 'topMarksByStudent'));
     }
 }
