@@ -29,7 +29,8 @@
                     <td>{{ $user->email }}</td>
                     <td>
                         <div class='btn-group'>
-                            <a class='btn btn-sm btn-success' href='{{ route('user.show', $user->id) }}'>
+                            <a class='btn btn-sm btn-success'
+                                href='{{ route($title == 'users' ? 'user.show' : 'student.show', $user->id) }}'>
                                 <i class='bi bi-eye'></i>
                             </a>
                             <a class='btn btn-sm btn-info' href='{{ route('user.edit', $user->id) }}'>

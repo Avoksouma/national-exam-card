@@ -71,7 +71,8 @@
                         <i class='bi bi-people me-2'></i> Students
                     </a>
                 @endif
-                <a href="" class="list-group-item list-group-item-action">
+                <a href="{{ route('profile.show', Auth::user()->id) }}"
+                    class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'profile')) active @endif">
                     <i class='bi bi-person-circle me-2'></i> Profile
                 </a>
                 <a href="{{ route('logout') }}" class="list-group-item list-group-item-action">

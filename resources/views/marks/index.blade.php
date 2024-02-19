@@ -41,7 +41,7 @@
                     <td>
                         @if (in_array(Auth::user()->role, ['admin', 'staff']))
                             <div class='btn-group'>
-                                <a class='btn btn-sm btn-success' href='{{ route('marks.show', $mark->id) }}'>
+                                <a class='btn btn-sm btn-success' href='{{ route('student.show', $mark->student_id) }}'>
                                     <i class='bi bi-eye'></i>
                                 </a>
                                 <a class='btn btn-sm btn-info' href='{{ route('marks.edit', $mark->id) }}'>

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Marks;
+use App\Models\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -44,7 +46,7 @@ class AuthController extends Controller
 
     public function edit(User $user): View
     {
-        return view('auth.edit', compact('user'));
+        return view('user.edit', compact('user'));
     }
 
     public function update(Request $request, User $user)
@@ -106,6 +108,11 @@ class AuthController extends Controller
 
     public function profile(User $user): View
     {
-        return view('dashboard.profile', compact('user'));
+        if ($user->role == 'student') {
+            $marks = Marks::where('student_id', $user->id)->paginate(10);
+            $applications = Application::where('user_id', $user->id)->paginate(10);
+
+            return view('user.show', compact('user', 'marks', 'applications'));
+        } else return view('user.show', compact('user'));
     }
 }
