@@ -35,15 +35,17 @@
                     <td>{{ $paper->subject->name }}</td>
                     <td>{!! $paper->description !!}</td>
                     <td>
-                        @if (in_array(Auth::user()->role, ['admin', 'staff']))
-                            <div class='btn-group'>
-                                <a class='btn btn-sm btn-success' href='{{ route('paper.show', $paper->id) }}'>
-                                    <i class='bi bi-eye'></i>
-                                </a>
+                        <div class='btn-group'>
+                            <a class='btn btn-sm btn-success' href='{{ route('paper.show', $paper->id) }}'>
+                                <i class='bi bi-eye'></i>
+                            </a>
+                            @if (in_array(Auth::user()->role, ['admin', 'staff']))
                                 <a class='btn btn-sm btn-info' href='{{ route('paper.edit', $paper->id) }}'>
                                     <i class='bi bi-pencil'></i>
                                 </a>
-                            </div>
+                            @endif
+                        </div>
+                        @if (in_array(Auth::user()->role, ['admin', 'staff']))
                             <form action='{{ route('paper.destroy', $paper->id) }}' method='post' class='d-inline'>
                                 @csrf @method('delete')
                                 <button class='btn btn-sm btn-warning'>
