@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Marks;
+use App\Models\Subject;
+use Illuminate\View\View;
 use App\Models\Application;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class AuthController extends Controller
 { // ! reset password, remember on login
@@ -106,13 +107,22 @@ class AuthController extends Controller
         return view('user.index', compact('users', 'title'));
     }
 
-    public function profile(User $user): View
+    public function profile(Request $request, User $user): View
     {
         if ($user->role == 'student') {
-            $marks = Marks::where('student_id', $user->id)->paginate(10);
+            $subjects = Subject::all();
+            $marks = Marks::where('student_id', $user->id);
             $applications = Application::where('user_id', $user->id)->paginate(10);
 
-            return view('user.show', compact('user', 'marks', 'applications'));
+            if ($request['year'])
+                $marks = $marks->where('year', $request['year']);
+
+            if ($request['subject'])
+                $marks = $marks->where('subject_id', $request['subject']);
+
+            $marks = $marks->paginate(10);
+
+            return view('user.show', compact('user', 'marks', 'subjects', 'applications'));
         } else return view('user.show', compact('user'));
     }
 }

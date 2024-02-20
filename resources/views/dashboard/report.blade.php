@@ -216,7 +216,7 @@
     <div class="float-end my-3 show-credit">
         <h6 class='text-muted text-end'>
             {{ now()->format('l, F j, Y') }} <br />
-            prepared by {{ Auth::user()->name }}
+            printed by {{ Auth::user()->name }}
         </h6>
     </div>
 @endsection
