@@ -37,7 +37,6 @@ The Office National des Examens et Concours du Superieur commonly referred to as
 -   [ ] student dashboard
 -   [ ] seeder: applications
 -   [ ] report: applications,
--   hide semester
 -   book table explaining use case
 
 ### Database Tables

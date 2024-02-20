@@ -35,10 +35,6 @@
                             placeholder='marks' value='{{ old('marks') }}' />
                     </div>
                     <div class='col-md-4'>
-                        <input class='form-control mb-3' type='number' min='1' max='10' name='semester'
-                            placeholder='semester' value='{{ old('semester') }}' />
-                    </div>
-                    <div class='col-md-4'>
                         <input class='form-control mb-3' type='number' min='1900' max='2100' name='year'
                             placeholder='year' value='{{ old('year') }}' />
                     </div>

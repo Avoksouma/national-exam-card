@@ -35,7 +35,6 @@ class MarksController extends Controller
     {
         $request->validate([
             'marks' => ['required'],
-            'semester' => ['required'],
             'year' => ['required'],
             'subject' => ['required'],
             'student' => ['required'],
@@ -43,7 +42,6 @@ class MarksController extends Controller
 
         Marks::create([
             'marks' => $request['marks'],
-            'semester' => $request['semester'],
             'year' => $request['year'],
             'subject_id' => $request['subject'],
             'student_id' => $request['student'],
@@ -69,7 +67,6 @@ class MarksController extends Controller
     {
         $request->validate([
             'marks' => ['required'],
-            'semester' => ['required'],
             'year' => ['required'],
             'subject' => ['required'],
             'student' => ['required'],
@@ -77,7 +74,6 @@ class MarksController extends Controller
 
         $mark->update([
             'marks' => $request['marks'],
-            'semester' => $request['semester'],
             'year' => $request['year'],
             'subject_id' => $request['subject'],
             'student_id' => $request['student'],

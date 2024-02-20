@@ -23,7 +23,6 @@ class MarksFactory extends Factory
 
         return [
             'marks' => $this->faker->numberBetween(10, 90),
-            'semester' => $this->faker->numberBetween(1, 3),
             'year' => $this->faker->numberBetween(2015, 2024),
             'subject_id' => $this->faker->randomElement($subjectIds),
             'student_id' => $this->faker->randomElement($studentIds),

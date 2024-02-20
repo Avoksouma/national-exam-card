@@ -38,7 +38,6 @@
                         <th scope="col">Student</th>
                         <th scope="col">Subject</th>
                         <th scope="col">Marks</th>
-                        <th scope="col">Semester</th>
                         <th scope="col">Year</th>
                         <th scope="col" class='hide-me'>Action</th>
                     </tr>
@@ -50,7 +49,6 @@
                             <td>{{ $mark->student->name }}</td>
                             <td>{{ $mark->subject->name }}</td>
                             <td>{{ $mark->marks }}</td>
-                            <td>{{ $mark->semester }}</td>
                             <td>{{ $mark->year }}</td>
                             <td class='hide-me'>
                                 @if (in_array(Auth::user()->role, ['admin', 'staff']))
@@ -98,7 +96,6 @@
                         <th scope="col">Student</th>
                         <th scope="col">Subject</th>
                         <th scope="col">Marks</th>
-                        <th scope="col">Semester</th>
                         <th scope="col">Year</th>
                         <th scope="col" class='hide-me'>Action</th>
                     </tr>
@@ -110,7 +107,6 @@
                             <td>{{ $mark->student->name }}</td>
                             <td>{{ $mark->subject->name }}</td>
                             <td>{{ $mark->marks }}</td>
-                            <td>{{ $mark->semester }}</td>
                             <td>{{ $mark->year }}</td>
                             <td class='hide-me'>
                                 @if (in_array(Auth::user()->role, ['admin', 'staff']))
@@ -158,7 +154,6 @@
                         <th scope="col">Student</th>
                         <th scope="col">Subject</th>
                         <th scope="col">Marks</th>
-                        <th scope="col">Semester</th>
                         <th scope="col">Year</th>
                         <th scope="col" class='hide-me'>Action</th>
                     </tr>
@@ -170,7 +165,6 @@
                             <td>{{ $mark->student->name }}</td>
                             <td>{{ $mark->subject->name }}</td>
                             <td>{{ $mark->marks }}</td>
-                            <td>{{ $mark->semester }}</td>
                             <td>{{ $mark->year }}</td>
                             <td class='hide-me'>
                                 @if (in_array(Auth::user()->role, ['admin', 'staff']))

@@ -12,7 +12,7 @@ class Marks extends Model
 
 
     protected $fillable = [
-        'marks', 'semester', 'year', 'subject_id', 'user_id', 'student_id'
+        'marks', 'year', 'subject_id', 'user_id', 'student_id'
     ];
 
     public function subject(): BelongsTo
