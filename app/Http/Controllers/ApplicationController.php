@@ -86,7 +86,12 @@ class ApplicationController extends Controller
 
     public function show(Request $request, Application $application): View
     {
-        return view('application.show', compact('application'));
+        $colors = [
+            'pending' => 'bg-info',
+            'rejected' => 'bg-danger',
+            'approved' => 'bg-success',
+        ];
+        return view('application.show', compact('colors', 'application'));
     }
 
     public function edit(Request $request, Application $application): View

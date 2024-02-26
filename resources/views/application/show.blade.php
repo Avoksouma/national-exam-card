@@ -51,7 +51,11 @@
                         <th colspan='4'>Description</th>
                     </tr>
                     <tr>
-                        <td>{{ $application->status }}</td>
+                        <td>
+                            <span class='badge {{ $colors[$application->status] }}'>
+                                {{ $application->status }}
+                            </span>
+                        </td>
                         <td colspan="4">{!! $application->description !!}</td>
                     </tr>
                 </tbody>
