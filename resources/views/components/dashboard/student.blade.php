@@ -17,41 +17,46 @@
         </thead>
     @endif
     <tbody>
-        @foreach ($applications as $key => $student)
+        @foreach ($applications as $key => $application)
             <tr>
                 <th scope="row">{{ $key + 1 }}</th>
                 <td>
-                    @if ($student->image)
-                        <img alt='{{ $student->first_name }}' src='{{ asset('storage/' . $student->image) }}'
+                    @if ($application->image)
+                        <img alt='{{ $application->first_name }}' src='{{ asset('storage/' . $application->image) }}'
                             width='40' height='40' style='object-fit:cover' class='rounded-pill me-1' />
                     @endif
-                    {{ $student->first_name }} {{ $student->last_name }}
+                    {{ $application->first_name }} {{ $application->last_name }}
                 </td>
-                <td>{{ $student->status }}</td>
-                <td>{{ $student->dob }}</td>
-                <td>{{ $student->school->name }}</td>
-                <td>{{ $student->contact_person }} {{ $student->contact_details }}</td>
+                <td>
+                    <span class='badge {{ $colors[$application->status] }}'>
+                        {{ $application->status }}
+                    </span>
+                </td>
+                <td>{{ $application->dob }}</td>
+                <td>{{ $application->school->name }}</td>
+                <td>{{ $application->contact_person }} {{ $application->contact_details }}</td>
                 <td>
                     @if (Auth::user()->role == 'sponsor')
                         <div class='btn-group'>
-                            <a class='btn btn-sm btn-success' href='{{ route('application.show', $student->id) }}'>
+                            <a class='btn btn-sm btn-success' href='{{ route('application.show', $application->id) }}'>
                                 <i class='bi bi-eye'></i>
                             </a>
-                            <a href='{{ route('application.support', $student->id) }}' class='btn btn-sm btn-info'
+                            <a href='{{ route('application.support', $application->id) }}' class='btn btn-sm btn-info'
                                 data-toggle="tooltip" title="Sponsor child">
                                 <i class='bi bi-check'></i>
                             </a>
                         </div>
                     @endif
                     <div class='btn-group'>
-                        <a class='btn btn-sm btn-success' href='{{ route('application.show', $student->id) }}'>
+                        <a class='btn btn-sm btn-success' href='{{ route('application.show', $application->id) }}'>
                             <i class='bi bi-eye'></i>
                         </a>
-                        <a class='btn btn-sm btn-info' href='{{ route('application.edit', $student->id) }}'>
+                        <a class='btn btn-sm btn-info' href='{{ route('application.edit', $application->id) }}'>
                             <i class='bi bi-pencil'></i>
                         </a>
                     </div>
-                    <form action='{{ route('application.destroy', $student->id) }}' method='post' class='d-inline'>
+                    <form action='{{ route('application.destroy', $application->id) }}' method='post'
+                        class='d-inline'>
                         @csrf @method('delete')
                         <button class='btn btn-sm btn-warning'>
                             <i class='bi bi-trash'></i>

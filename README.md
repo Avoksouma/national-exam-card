@@ -39,6 +39,9 @@ The Office National des Examens et Concours du Superieur commonly referred to as
 -   [ ] report: applications,
 -   book table explaining use case
 
+-   reject: red, approved: green
+-   email: register, marks, application
+
 ### Database Tables
 
 -   [x] User -> Student

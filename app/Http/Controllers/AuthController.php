@@ -110,6 +110,12 @@ class AuthController extends Controller
     public function profile(Request $request, User $user): View
     {
         if ($user->role == 'student') {
+            $colors = [
+                'pending' => 'bg-info',
+                'rejected' => 'bg-danger',
+                'approved' => 'bg-success',
+            ];
+
             $subjects = Subject::all();
             $marks = Marks::where('student_id', $user->id);
             $applications = Application::where('user_id', $user->id)->paginate(10);
@@ -122,7 +128,7 @@ class AuthController extends Controller
 
             $marks = $marks->paginate(10);
 
-            return view('user.show', compact('user', 'marks', 'subjects', 'applications'));
+            return view('user.show', compact('user', 'marks', 'colors', 'subjects', 'applications'));
         } else return view('user.show', compact('user'));
     }
 }

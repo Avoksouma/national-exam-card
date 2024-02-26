@@ -42,9 +42,14 @@ class DefaultController extends Controller
 
     public function dashboard(): View
     {
+        $colors = [
+            'pending' => 'bg-info',
+            'rejected' => 'bg-danger',
+            'approved' => 'bg-success',
+        ];
         if (Auth::user()->role == 'student') {
             $applications = Application::where('user_id', Auth::id())->limit(10)->get();
-            return view('dashboard.index', compact('applications'));
+            return view('dashboard.index', compact('applications', 'colors'));
         }
 
         $schools = School::count();
@@ -57,6 +62,11 @@ class DefaultController extends Controller
     public function report(Request $request): View | JsonResponse
     {
         $subjects = Subject::all();
+        $colors = [
+            'pending' => 'bg-info',
+            'rejected' => 'bg-danger',
+            'approved' => 'bg-success',
+        ];
         $tab = $request['tab'] ?: 'year';
         $students = User::where('role', 'student')->get();
         $topMarksByYear = Marks::select('marks.*')
@@ -92,6 +102,6 @@ class DefaultController extends Controller
         $topMarksBySubject = $topMarksBySubject->get();
         $topMarksByStudent = $topMarksByStudent->get();
 
-        return view('dashboard.report', compact('tab', 'subjects', 'students', 'topMarksByYear', 'topMarksBySubject', 'topMarksByStudent'));
+        return view('dashboard.report', compact('tab', 'colors', 'subjects', 'students', 'topMarksByYear', 'topMarksBySubject', 'topMarksByStudent'));
     }
 }

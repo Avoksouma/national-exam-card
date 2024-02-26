@@ -50,20 +50,25 @@
                 </thead>
             @endif
             <tbody>
-                @foreach ($applications as $key => $student)
+                @foreach ($applications as $key => $application)
                     <tr>
                         <th scope="row">{{ $key + 1 }}</th>
                         <td>
-                            @if ($student->image)
-                                <img alt='{{ $student->first_name }}' src='{{ asset('storage/' . $student->image) }}'
-                                    width='40' height='40' style='object-fit:cover' class='rounded-pill me-1' />
+                            @if ($application->image)
+                                <img alt='{{ $application->first_name }}'
+                                    src='{{ asset('storage/' . $application->image) }}' width='40' height='40'
+                                    style='object-fit:cover' class='rounded-pill me-1' />
                             @endif
-                            {{ $student->first_name }} {{ $student->last_name }}
+                            {{ $application->first_name }} {{ $application->last_name }}
                         </td>
-                        <td>{{ $student->status }}</td>
-                        <td>{{ $student->dob }}</td>
-                        <td>{{ $student->school->name }}</td>
-                        <td>{{ $student->contact_person }} {{ $student->contact_details }}</td>
+                        <td>
+                            <span class='badge {{ $colors[$application->status] }}'>
+                                {{ $application->status }}
+                            </span>
+                        </td>
+                        <td>{{ $application->dob }}</td>
+                        <td>{{ $application->school->name }}</td>
+                        <td>{{ $application->contact_person }} {{ $application->contact_details }}</td>
 
                     </tr>
                 @endforeach
