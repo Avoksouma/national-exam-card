@@ -28,6 +28,7 @@ Route::get('/', [DefaultController::class, 'home'])->name('home');
 Route::get('/about', [DefaultController::class, 'about'])->name('about');
 Route::get('/contact', [DefaultController::class, 'contact'])->name('contact');
 Route::get('/license', [DefaultController::class, 'license'])->name('license');
+Route::get('/privacy', [DefaultController::class, 'privacy'])->name('privacy');
 Route::get('/dashboard', [DefaultController::class, 'dashboard'])->name('dashboard');
 Route::get('/dashboard/report', [DefaultController::class, 'report'])->name('report');
 Route::post('/dashboard/report', [DefaultController::class, 'report'])->name('report');

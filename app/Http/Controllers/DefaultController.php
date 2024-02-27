@@ -40,6 +40,11 @@ class DefaultController extends Controller
         return view('license');
     }
 
+    public function privacy(): View
+    {
+        return view('privacy');
+    }
+
     public function dashboard(): View
     {
         $colors = [

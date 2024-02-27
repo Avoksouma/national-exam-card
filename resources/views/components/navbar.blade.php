@@ -35,6 +35,12 @@
                                 {{ __('Contact Us') }}
                             </a>
                         </li>
+                        <li>
+                            <a class="dropdown-item @if (Route::currentRouteName() == 'privacy') active @endif"
+                                href="{{ route('privacy') }}">
+                                {{ __('Privacy Policy') }}
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 @guest
