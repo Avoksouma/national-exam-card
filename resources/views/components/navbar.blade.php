@@ -9,30 +9,30 @@
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link @if (Route::currentRouteName() == 'home') active @endif" href="{{ route('home') }}">
-                        Home
+                        {{ __('Home') }}
                     </a>
                 </li>
                 @auth
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
+                        <a class="nav-link" href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a>
                     </li>
                 @endauth
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle @if (in_array(Route::currentRouteName(), ['about', 'contact', 'license'])) active @endif" href="#"
                         role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Support
+                        {{ __('Support') }}
                     </a>
                     <ul class="dropdown-menu">
                         <li>
                             <a class="dropdown-item @if (Route::currentRouteName() == 'about') active @endif"
                                 href="{{ route('about') }}">
-                                About Us
+                                {{ __('About Us') }}
                             </a>
                         </li>
                         <li>
                             <a class="dropdown-item @if (Route::currentRouteName() == 'contact') active @endif"
                                 href="{{ route('contact') }}">
-                                Contact Us
+                                {{ __('Contact Us') }}
                             </a>
                         </li>
                     </ul>
@@ -40,17 +40,17 @@
                 @guest
                     <li class="nav-item">
                         <a class="nav-link @if (Route::currentRouteName() == 'login') active @endif" href="{{ route('login') }}">
-                            Login
+                            {{ __('Login') }}
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link @if (Route::currentRouteName() == 'register') active @endif" href="{{ route('register') }}">
-                            Register
+                            {{ __('Register') }}
                         </a>
                     </li>
                 @else
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('logout') }}">Logout</a>
+                        <a class="nav-link" href="{{ route('logout') }}">{{ __('Logout') }}</a>
                     </li>
                 @endguest
                 <li class="nav-item my-auto">

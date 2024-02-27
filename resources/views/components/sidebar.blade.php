@@ -6,77 +6,77 @@
             </div>
             <div class="list-group list-group-flush">
                 <a href="{{ route('home') }}" class="list-group-item list-group-item-action">
-                    <i class='bi bi-house me-2'></i> Home
+                    <i class='bi bi-house me-2'></i> {{ __('Home') }}
                 </a>
                 <a href="{{ route('dashboard') }}"
                     class="list-group-item list-group-item-action @if (Route::currentRouteName() == 'dashboard') active @endif">
-                    <i class='bi bi-speedometer2 me-2'></i> Dashboard
+                    <i class='bi bi-speedometer2 me-2'></i> {{ __('Dashboard') }}
                 </a>
                 @if (in_array(Auth::user()->role, ['staff', 'admin']))
                     <a href="{{ route('report') }}"
                         class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'report')) active @endif">
-                        <i class='bi bi-box me-2'></i> Report
+                        <i class='bi bi-box me-2'></i> {{ __('Report') }}
                     </a>
                     <a href="{{ route('school.index') }}"
                         class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'school')) active @endif">
-                        <i class='bi bi-building me-2'></i> School
+                        <i class='bi bi-building me-2'></i> {{ __('School') }}
                     </a>
                 @endif
                 <a href="{{ route('application.index') }}"
                     class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'application')) active @endif">
-                    <i class='bi bi-collection me-2'></i> Student Application
+                    <i class='bi bi-collection me-2'></i> {{ __('Student Application') }}
                 </a>
                 @if (in_array(Auth::user()->role, ['staff', 'admin']))
                     <a href="{{ route('subject.index') }}"
                         class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'subject')) active @endif">
-                        <i class='bi bi-star me-2'></i> Subjects
+                        <i class='bi bi-star me-2'></i> {{ __('Subjects') }}
                     </a>
                     <a href="{{ route('combination.index') }}"
                         class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'combination')) active @endif">
-                        <i class='bi bi-boxes me-2'></i> Combinations
+                        <i class='bi bi-boxes me-2'></i> {{ __('Combinations') }}
                     </a>
                 @endif
                 <a href="{{ route('marks.index') }}"
                     class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'marks')) active @endif">
-                    <i class='bi bi-clipboard-check me-2'></i> Marks
+                    <i class='bi bi-clipboard-check me-2'></i> {{ __('Marks') }}
                 </a>
                 <a href="{{ route('calendar.index') }}"
                     class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'calendar')) active @endif">
-                    <i class='bi bi-calendar-date me-2'></i> Calendar
+                    <i class='bi bi-calendar-date me-2'></i> {{ __('Calendar') }}
                 </a>
                 <a href="{{ route('notification.index') }}"
                     class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'notification')) active @endif">
-                    <i class='bi bi-bell me-2'></i> Notification
+                    <i class='bi bi-bell me-2'></i> {{ __('Notification') }}
                     <span class='badge bg-info float-end'>
                         {{ Auth::user()->notifications->count() }}
                     </span>
                 </a>
                 <a href="" class="list-group-item list-group-item-action d-none">
-                    <i class='bi bi-chat me-2'></i> Message
+                    <i class='bi bi-chat me-2'></i> {{ __('Message') }}
                     <span class='badge bg-info float-end'>
                         {{ Auth::user()->receivedMessages->count() }}
                     </span>
                 </a>
                 <a href="{{ route('paper.index') }}"
                     class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'paper')) active @endif">
-                    <i class='bi bi-file-earmark-medical me-2'></i> Past Papers
+                    <i class='bi bi-file-earmark-medical me-2'></i> {{ __('Past Papers') }}
                 </a>
                 @if (in_array(Auth::user()->role, ['staff', 'admin']))
                     <a href="{{ route('user.index') }}"
                         class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'user')) active @endif">
-                        <i class='bi bi-people me-2'></i> User
+                        <i class='bi bi-people me-2'></i> {{ __('User') }}
                     </a>
                     <a href="{{ route('student.index') }}"
                         class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'student')) active @endif">
-                        <i class='bi bi-people me-2'></i> Students
+                        <i class='bi bi-people me-2'></i> {{ __('Students') }}
                     </a>
                 @endif
                 <a href="{{ route('profile.show', Auth::user()->id) }}"
                     class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'profile')) active @endif">
-                    <i class='bi bi-person-circle me-2'></i> Profile
+                    <i class='bi bi-person-circle me-2'></i> {{ __('Profile') }}
                 </a>
                 <a href="{{ route('logout') }}" class="list-group-item list-group-item-action">
-                    <i class='bi bi-box-arrow-left me-2'></i> Logout
+                    <i class='bi bi-box-arrow-left me-2'></i> {{ __('Logout') }}
                 </a>
                 <div class='list-group-item list-group-item-action text-center'>
                     <a class='text-decoration-none mx-1' href="/language/en">
