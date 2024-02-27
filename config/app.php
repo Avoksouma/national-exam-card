@@ -95,6 +95,11 @@ return [
 
     'fallback_locale' => 'en',
 
+    'available_locales' => [
+        'English' => 'en',
+        'French' => 'fr',
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Faker Locale

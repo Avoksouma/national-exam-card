@@ -78,6 +78,14 @@
                 <a href="{{ route('logout') }}" class="list-group-item list-group-item-action">
                     <i class='bi bi-box-arrow-left me-2'></i> Logout
                 </a>
+                <div class='list-group-item list-group-item-action text-center'>
+                    <a class='text-decoration-none mx-1' href="/language/en">
+                        <img alt='english flag' src='/img/english.png' width='25' height='25' />
+                    </a>
+                    <a class='text-decoration-none mx-1' href="/language/fr">
+                        <img alt='francais flag' src='/img/francais.png' width='25' height='25' />
+                    </a>
+                </div>
             </div>
         </div>
         <div class='d-flex flex-row'>

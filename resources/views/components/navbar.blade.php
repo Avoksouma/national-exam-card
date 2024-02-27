@@ -53,6 +53,14 @@
                         <a class="nav-link" href="{{ route('logout') }}">Logout</a>
                     </li>
                 @endguest
+                <li class="nav-item my-auto">
+                    <a class='text-decoration-none ms-2' href="/language/en">
+                        <img alt='english flag' src='/img/english.png' width='25' height='25' />
+                    </a>
+                    <a class='text-decoration-none ms-2' href="/language/fr">
+                        <img alt='francais flag' src='/img/francais.png' width='25' height='25' />
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
