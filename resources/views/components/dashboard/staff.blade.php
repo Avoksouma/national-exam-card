@@ -28,3 +28,6 @@
         </div>
     </div>
 </div>
+<div class="col-12 mt-2">
+    <canvas id="myChart" width="400" height="150"></canvas>
+</div>
