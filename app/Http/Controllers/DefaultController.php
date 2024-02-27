@@ -13,6 +13,13 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * @OA\Info(
+ *     title="National Exam Card API",
+ *     version="0.1.0",
+ *     description="The National Exam Card API provides access to student's application for exam card data and process. ",
+ * )
+ */
 class DefaultController extends Controller
 {
     public function __construct()

@@ -75,6 +75,9 @@
                     class="list-group-item list-group-item-action @if (str_contains(Route::currentRouteName(), 'profile')) active @endif">
                     <i class='bi bi-person-circle me-2'></i> {{ __('Profile') }}
                 </a>
+                <a href="/api/documentation" class="list-group-item list-group-item-action">
+                    <i class='bi bi-arrow-left-right me-2'></i> {{ __('API Documentation') }}
+                </a>
                 <a href="{{ route('logout') }}" class="list-group-item list-group-item-action">
                     <i class='bi bi-box-arrow-left me-2'></i> {{ __('Logout') }}
                 </a>

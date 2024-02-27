@@ -11,6 +11,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
+/**
+ * Class ApplicationController
+ * @package App\Http\Controllers
+ * @OA\Tag(
+ *     name="apply",
+ *     description="Operations related to student application"
+ * )
+ */
 class ApplicationController extends Controller
 {
     public function __construct()
@@ -18,6 +26,16 @@ class ApplicationController extends Controller
         $this->middleware('auth');
     }
 
+    /**
+     * @OA\Get(
+     *     path="/appplication",
+     *     summary="Get a list of all student applications",
+     *     tags={"apply"},
+     *     @OA\Response(response="200", description="List of student applications"),
+     *     @OA\Response(response="401", description="Unauthorized"),
+     *     @OA\Response(response="404", description="Not Found")
+     * )
+     */
     public function index(): View
     {
         $colors = [
@@ -39,6 +57,23 @@ class ApplicationController extends Controller
         return view('application.create', compact('schools', 'combinations'));
     }
 
+    /**
+     * @OA\Post(
+     *     path="/application",
+     *     summary="Create a new application",
+     *     tags={"apply"},
+     *     @OA\Response(response="201", description="Student application created successfully"),
+     *     @OA\Response(response="401", description="Unauthorized"),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             @OA\Property(property="title", type="string", example="Sample Title"),
+     *             @OA\Property(property="content", type="string", example="Sample content"),
+     *             @OA\Property(property="author_id", type="integer", example=1)
+     *         )
+     *     )
+     * )
+     */
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
@@ -84,6 +119,23 @@ class ApplicationController extends Controller
         return redirect()->route('application.index');
     }
 
+    /**
+     * @OA\Get(
+     *     path="/application/{id}",
+     *     summary="Get a specific student application by ID",
+     *     tags={"apply"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         description="ID of the application",
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(response="200", description="Student application details"),
+     *     @OA\Response(response="401", description="Unauthorized"),
+     *     @OA\Response(response="404", description="Not Found")
+     * )
+     */
     public function show(Request $request, Application $application): View
     {
         $colors = [
@@ -101,6 +153,31 @@ class ApplicationController extends Controller
         return view('application.edit', compact('application', 'schools', 'combinations'));
     }
 
+    /**
+     * @OA\Put(
+     *     path="/application/{id}",
+     *     summary="Update an existing student application",
+     *     tags={"apply"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         description="ID of the student application",
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(response="200", description="Student application updated successfully"),
+     *     @OA\Response(response="401", description="Unauthorized"),
+     *     @OA\Response(response="404", description="Not Found"),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             @OA\Property(property="title", type="string", example="Updated Title"),
+     *             @OA\Property(property="content", type="string", example="Updated content"),
+     *             @OA\Property(property="author_id", type="integer", example=1)
+     *         )
+     *     )
+     * )
+     */
     public function update(Request $request, Application $application): RedirectResponse
     {
         $request->validate([
@@ -152,6 +229,23 @@ class ApplicationController extends Controller
         return redirect()->route('application.index');
     }
 
+    /**
+     * @OA\Delete(
+     *     path="/application/{id}",
+     *     summary="Delete a student application by ID",
+     *     tags={"apply"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         description="ID of the student application",
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(response="204", description="Student application deleted successfully"),
+     *     @OA\Response(response="401", description="Unauthorized"),
+     *     @OA\Response(response="404", description="Not Found")
+     * )
+     */
     public function destroy(application $application): RedirectResponse
     {
         $application->delete();

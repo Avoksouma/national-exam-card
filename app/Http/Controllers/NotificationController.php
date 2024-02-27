@@ -8,6 +8,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
+/**
+ * Class NotificationController
+ * @package App\Http\Controllers
+ * @OA\Tag(
+ *     name="notification",
+ *     description="Operations related to notification"
+ * )
+ */
 class NotificationController extends Controller
 {
     public function __construct()
@@ -15,6 +23,16 @@ class NotificationController extends Controller
         $this->middleware('auth');
     }
 
+    /**
+     * @OA\Get(
+     *     path="/notification",
+     *     summary="Get a list of all notifications",
+     *     tags={"notification"},
+     *     @OA\Response(response="200", description="List of notifications"),
+     *     @OA\Response(response="401", description="Unauthorized"),
+     *     @OA\Response(response="404", description="Not Found")
+     * )
+     */
     public function index(): View
     {
         $notifications = Notification::where('user_id', Auth::id())->paginate(10);
@@ -72,6 +90,23 @@ class NotificationController extends Controller
         return redirect()->route('notification.index');
     }
 
+    /**
+     * @OA\Delete(
+     *     path="/notification/{id}",
+     *     summary="Delete a notification by ID",
+     *     tags={"notification"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         description="ID of the notification",
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(response="204", description="Notification deleted successfully"),
+     *     @OA\Response(response="401", description="Unauthorized"),
+     *     @OA\Response(response="404", description="Not Found")
+     * )
+     */
     public function destroy(Notification $notification): RedirectResponse
     {
         $notification->delete();
