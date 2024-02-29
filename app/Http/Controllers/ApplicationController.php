@@ -208,6 +208,14 @@ class ApplicationController extends Controller
                 'user_id' => $application->user_id,
             ]);
 
+        if ($request['status'] == 'rejected')
+            Notification::create([
+                'title' => 'Application Rejected',
+                'url' => "/application/" . $application->id,
+                'content' => 'Your student application has been rejected, we will get in touch to discuss details',
+                'user_id' => $application->user_id,
+            ]);
+
         $application->update([
             'first_name' => $request['first_name'],
             'last_name' => $request['last_name'],

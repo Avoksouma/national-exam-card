@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Marks;
 use App\Models\Subject;
+use App\Mail\WelcomeMail;
 use Illuminate\View\View;
 use App\Models\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\RedirectResponse;
 
 class AuthController extends Controller
@@ -76,6 +78,11 @@ class AuthController extends Controller
             'email' => $request['email'],
             'password' => Hash::make($request['password'])
         ]);
+
+        try {
+            Mail::to($request['email'])->send(new WelcomeMail());
+        } catch (\Exception $e) {
+        }
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
