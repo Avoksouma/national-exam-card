@@ -6,13 +6,13 @@
         "version": "0.1.0"
     },
     "paths": {
-        "/appplication": {
+        "/api/v1/application": {
             "get": {
                 "tags": [
                     "apply"
                 ],
                 "summary": "Get a list of all student applications",
-                "operationId": "ac4b338cec70a632a5ff95fd1f789744",
+                "operationId": "6227fec5c8cdc8c7d34967f0b258af43",
                 "responses": {
                     "200": {
                         "description": "List of student applications"
@@ -24,15 +24,13 @@
                         "description": "Not Found"
                     }
                 }
-            }
-        },
-        "/application": {
+            },
             "post": {
                 "tags": [
                     "apply"
                 ],
                 "summary": "Create a new application",
-                "operationId": "10b1f5823a2602fa4c4ef155b9a044ff",
+                "operationId": "b9a268f05376b721a77909e82c159dbd",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -67,13 +65,13 @@
                 }
             }
         },
-        "/application/{id}": {
+        "/api/v1/application/{id}": {
             "get": {
                 "tags": [
                     "apply"
                 ],
                 "summary": "Get a specific student application by ID",
-                "operationId": "53a449392d58bcdac6d371b2d6b466ab",
+                "operationId": "6217f0ddca99223b4f5d4471a5e635db",
                 "parameters": [
                     {
                         "name": "id",
@@ -102,7 +100,7 @@
                     "apply"
                 ],
                 "summary": "Update an existing student application",
-                "operationId": "0c79a9f4b928cab4aac1c6ca6eac544b",
+                "operationId": "35fe4daa625d7d8c9dd20b65a1dd408e",
                 "parameters": [
                     {
                         "name": "id",
@@ -155,7 +153,7 @@
                     "apply"
                 ],
                 "summary": "Delete a student application by ID",
-                "operationId": "18ca54502e223e9408216f5487c5199c",
+                "operationId": "26428a525ef1c1754b594a24d0657209",
                 "parameters": [
                     {
                         "name": "id",

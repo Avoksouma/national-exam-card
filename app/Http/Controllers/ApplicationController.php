@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\School;
+use Illuminate\View\View;
 use App\Models\Application;
 use App\Models\Combination;
 use App\Models\Notification;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\View\View;
 
 /**
  * Class ApplicationController
@@ -23,12 +24,12 @@ class ApplicationController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except(['all']);
     }
 
     /**
      * @OA\Get(
-     *     path="/appplication",
+     *     path="/api/v1/application",
      *     summary="Get a list of all student applications",
      *     tags={"apply"},
      *     @OA\Response(response="200", description="List of student applications"),
@@ -36,6 +37,12 @@ class ApplicationController extends Controller
      *     @OA\Response(response="404", description="Not Found")
      * )
      */
+    public function all(): JsonResponse
+    {
+        $applications = Application::paginate(10);
+        return response()->json(['applications' => $applications]);
+    }
+
     public function index(): View
     {
         $colors = [
@@ -59,7 +66,7 @@ class ApplicationController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/application",
+     *     path="/api/v1/application",
      *     summary="Create a new application",
      *     tags={"apply"},
      *     @OA\Response(response="201", description="Student application created successfully"),
@@ -121,7 +128,7 @@ class ApplicationController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/application/{id}",
+     *     path="/api/v1/application/{id}",
      *     summary="Get a specific student application by ID",
      *     tags={"apply"},
      *     @OA\Parameter(
@@ -155,7 +162,7 @@ class ApplicationController extends Controller
 
     /**
      * @OA\Put(
-     *     path="/application/{id}",
+     *     path="/api/v1/application/{id}",
      *     summary="Update an existing student application",
      *     tags={"apply"},
      *     @OA\Parameter(
@@ -239,7 +246,7 @@ class ApplicationController extends Controller
 
     /**
      * @OA\Delete(
-     *     path="/application/{id}",
+     *     path="/api/v1/application/{id}",
      *     summary="Delete a student application by ID",
      *     tags={"apply"},
      *     @OA\Parameter(
