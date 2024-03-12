@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Marks;
 use App\Models\Subject;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,12 +23,12 @@ class MarksController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except(['all']);
     }
 
     /**
      * @OA\Get(
-     *     path="/marks",
+     *     path="/api/v1/marks",
      *     summary="Get a list of all marks",
      *     tags={"marks"},
      *     @OA\Response(response="200", description="List of marks"),
@@ -35,6 +36,12 @@ class MarksController extends Controller
      *     @OA\Response(response="404", description="Not Found")
      * )
      */
+    public function all(): JsonResponse
+    {
+        $marks = Marks::paginate(10);
+        return response()->json(['marks' => $marks]);
+    }
+
     public function index(): View
     {
         if (Auth::user()->role == 'student') $marks = Marks::where('student_id', Auth::id())->paginate(10);
@@ -51,7 +58,7 @@ class MarksController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/marks",
+     *     path="/api/v1/marks",
      *     summary="Create a new marks",
      *     tags={"marks"},
      *     @OA\Response(response="201", description="Marks created successfully"),
@@ -88,7 +95,7 @@ class MarksController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/marks/{id}",
+     *     path="/api/v1/marks/{id}",
      *     summary="Get a specific marks by ID",
      *     tags={"marks"},
      *     @OA\Parameter(
@@ -117,7 +124,7 @@ class MarksController extends Controller
 
     /**
      * @OA\Put(
-     *     path="/marks/{id}",
+     *     path="/api/v1/marks/{id}",
      *     summary="Update an existing marks",
      *     tags={"marks"},
      *     @OA\Parameter(
@@ -161,7 +168,7 @@ class MarksController extends Controller
 
     /**
      * @OA\Delete(
-     *     path="/marks/{id}",
+     *     path="/api/v1/marks/{id}",
      *     summary="Delete a marks by ID",
      *     tags={"marks"},
      *     @OA\Parameter(

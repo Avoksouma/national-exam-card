@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Subject;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,12 +21,12 @@ class SubjectController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except(['all']);
     }
 
     /**
      * @OA\Get(
-     *     path="/subject",
+     *     path="/api/v1/subject",
      *     summary="Get a list of all subjects",
      *     tags={"subject"},
      *     @OA\Response(response="200", description="List of subjects"),
@@ -33,6 +34,12 @@ class SubjectController extends Controller
      *     @OA\Response(response="404", description="Not Found")
      * )
      */
+    public function all(): JsonResponse
+    {
+        $subjects = Subject::paginate(10);
+        return response()->json(['subjects' => $subjects]);
+    }
+
     public function index(): View
     {
         $subjects = Subject::paginate(10);
@@ -46,7 +53,7 @@ class SubjectController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/subject",
+     *     path="/api/v1/subject",
      *     summary="Create a new subject",
      *     tags={"subject"},
      *     @OA\Response(response="201", description="Subject created successfully"),
@@ -86,7 +93,7 @@ class SubjectController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/subject/{id}",
+     *     path="/api/v1/subject/{id}",
      *     summary="Get a specific subject by ID",
      *     tags={"subject"},
      *     @OA\Parameter(
@@ -113,7 +120,7 @@ class SubjectController extends Controller
 
     /**
      * @OA\Put(
-     *     path="/subject/{id}",
+     *     path="/api/v1/subject/{id}",
      *     summary="Update an existing subject",
      *     tags={"subject"},
      *     @OA\Parameter(
@@ -160,7 +167,7 @@ class SubjectController extends Controller
 
     /**
      * @OA\Delete(
-     *     path="/subject/{id}",
+     *     path="/api/v1/subject/{id}",
      *     summary="Delete a subject by ID",
      *     tags={"subject"},
      *     @OA\Parameter(

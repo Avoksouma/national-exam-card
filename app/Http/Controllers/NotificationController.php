@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Notification;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,12 +21,12 @@ class NotificationController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except(['all']);
     }
 
     /**
      * @OA\Get(
-     *     path="/notification",
+     *     path="/api/v1/notification",
      *     summary="Get a list of all notifications",
      *     tags={"notification"},
      *     @OA\Response(response="200", description="List of notifications"),
@@ -33,6 +34,12 @@ class NotificationController extends Controller
      *     @OA\Response(response="404", description="Not Found")
      * )
      */
+    public function all(): JsonResponse
+    {
+        $notifications = Notification::paginate(10);
+        return response()->json(['notifications' => $notifications]);
+    }
+
     public function index(): View
     {
         $notifications = Notification::where('user_id', Auth::id())->paginate(10);
@@ -92,7 +99,7 @@ class NotificationController extends Controller
 
     /**
      * @OA\Delete(
-     *     path="/notification/{id}",
+     *     path="/api/v1/notification/{id}",
      *     summary="Delete a notification by ID",
      *     tags={"notification"},
      *     @OA\Parameter(

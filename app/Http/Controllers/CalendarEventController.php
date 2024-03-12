@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CalendarEvent;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,12 +21,12 @@ class CalendarEventController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except(['all']);
     }
 
     /**
      * @OA\Get(
-     *     path="/calendar",
+     *     path="/api/v1/calendar",
      *     summary="Get a list of all calendar events",
      *     tags={"calendar"},
      *     @OA\Response(response="200", description="List of calendar events"),
@@ -33,6 +34,12 @@ class CalendarEventController extends Controller
      *     @OA\Response(response="404", description="Not Found")
      * )
      */
+    public function all(): JsonResponse
+    {
+        $calendarEvents = CalendarEvent::paginate(10);
+        return response()->json(['events' => $calendarEvents]);
+    }
+
     public function index(): View
     {
         $calendarEvents = CalendarEvent::paginate(10);
@@ -46,7 +53,7 @@ class CalendarEventController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/calendar",
+     *     path="/api/v1/calendar",
      *     summary="Create a new calendar event",
      *     tags={"calendar"},
      *     @OA\Response(response="201", description="Calendar event created successfully"),
@@ -84,7 +91,7 @@ class CalendarEventController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/calendar/{id}",
+     *     path="/api/v1/calendar/{id}",
      *     summary="Get a specific calendar event by ID",
      *     tags={"calendar"},
      *     @OA\Parameter(
@@ -111,7 +118,7 @@ class CalendarEventController extends Controller
 
     /**
      * @OA\Put(
-     *     path="/calendar/{id}",
+     *     path="/api/v1/calendar/{id}",
      *     summary="Update an existing calendar event",
      *     tags={"calendar"},
      *     @OA\Parameter(
@@ -156,7 +163,7 @@ class CalendarEventController extends Controller
 
     /**
      * @OA\Delete(
-     *     path="/calendar/{id}",
+     *     path="/api/v1/calendar/{id}",
      *     summary="Delete a calendar event by ID",
      *     tags={"calendar"},
      *     @OA\Parameter(

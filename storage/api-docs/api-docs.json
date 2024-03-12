@@ -178,13 +178,13 @@
                 }
             }
         },
-        "/calendar": {
+        "/api/v1/calendar": {
             "get": {
                 "tags": [
                     "calendar"
                 ],
                 "summary": "Get a list of all calendar events",
-                "operationId": "08a803fe237a76081b119fcd0961cf09",
+                "operationId": "829b27ffc4cca6ce982b9d798cffdbf9",
                 "responses": {
                     "200": {
                         "description": "List of calendar events"
@@ -202,7 +202,7 @@
                     "calendar"
                 ],
                 "summary": "Create a new calendar event",
-                "operationId": "857913d662da8c9a5e14b0dd3ebc109d",
+                "operationId": "3dcde2211ddbecc41a5e44f9a8828ef4",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -237,13 +237,13 @@
                 }
             }
         },
-        "/calendar/{id}": {
+        "/api/v1/calendar/{id}": {
             "get": {
                 "tags": [
                     "calendar"
                 ],
                 "summary": "Get a specific calendar event by ID",
-                "operationId": "8b1a3cb09aaf8b498b22e612257af49d",
+                "operationId": "9f34a4eb8bb83477069f7a6e9cbbea5f",
                 "parameters": [
                     {
                         "name": "id",
@@ -272,7 +272,7 @@
                     "calendar"
                 ],
                 "summary": "Update an existing calendar event",
-                "operationId": "c9feb19dc9e866e9c6963ef1808c64ae",
+                "operationId": "cdb3e2f7444aacd5428c02e3741e85f7",
                 "parameters": [
                     {
                         "name": "id",
@@ -325,7 +325,7 @@
                     "calendar"
                 ],
                 "summary": "Delete a calendar event by ID",
-                "operationId": "8eed73fd20b5ba6a5d83dc26d9f70f2d",
+                "operationId": "22b4525af6ffa65eda544f794459c4b8",
                 "parameters": [
                     {
                         "name": "id",
@@ -350,13 +350,13 @@
                 }
             }
         },
-        "/combination": {
+        "/api/v1/combination": {
             "get": {
                 "tags": [
                     "combination"
                 ],
                 "summary": "Get a list of all combinations",
-                "operationId": "e6d7fc8051a35fdab05eb358646f5aa8",
+                "operationId": "6f78b87561353c03491d92a40511cf2e",
                 "responses": {
                     "200": {
                         "description": "List of combinations"
@@ -374,7 +374,7 @@
                     "combination"
                 ],
                 "summary": "Create a new combination",
-                "operationId": "337988ebafad0698dd64e9c5ad5346ed",
+                "operationId": "2e4fb53084efd064ec17a8a400577068",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -409,13 +409,13 @@
                 }
             }
         },
-        "/combination/{id}": {
+        "/api/v1/combination/{id}": {
             "get": {
                 "tags": [
                     "combination"
                 ],
                 "summary": "Get a specific combination by ID",
-                "operationId": "ce617e8414e6c5d08171b8d9f505ead7",
+                "operationId": "c3a65f1309c8217f5d6c5c6c6b44c4b2",
                 "parameters": [
                     {
                         "name": "id",
@@ -444,7 +444,7 @@
                     "combination"
                 ],
                 "summary": "Update an existing combination",
-                "operationId": "97f26aed2601254c03ae23ffe5dda246",
+                "operationId": "51953fbe08bc48e6129734b7bce402bf",
                 "parameters": [
                     {
                         "name": "id",
@@ -497,7 +497,7 @@
                     "combination"
                 ],
                 "summary": "Delete a combination by ID",
-                "operationId": "16d207b8f78bb5f0b10b514caaf868ce",
+                "operationId": "044037679fc814ce0b937d363cbd47f0",
                 "parameters": [
                     {
                         "name": "id",
@@ -522,13 +522,13 @@
                 }
             }
         },
-        "/marks": {
+        "/api/v1/marks": {
             "get": {
                 "tags": [
                     "marks"
                 ],
                 "summary": "Get a list of all marks",
-                "operationId": "c291194f941b3c5faadc35db74a64c23",
+                "operationId": "79cc64b753d30ac54b95540e61a6066d",
                 "responses": {
                     "200": {
                         "description": "List of marks"
@@ -546,7 +546,7 @@
                     "marks"
                 ],
                 "summary": "Create a new marks",
-                "operationId": "65e519ebab57e69351d438c0e4efb584",
+                "operationId": "80f65ec58382d99a33954a8cdc50bb41",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -581,13 +581,13 @@
                 }
             }
         },
-        "/marks/{id}": {
+        "/api/v1/marks/{id}": {
             "get": {
                 "tags": [
                     "marks"
                 ],
                 "summary": "Get a specific marks by ID",
-                "operationId": "c46dda3250c2adc791e5071fa8c3b404",
+                "operationId": "ef327bacb10acc6750293527a596995b",
                 "parameters": [
                     {
                         "name": "id",
@@ -616,7 +616,7 @@
                     "marks"
                 ],
                 "summary": "Update an existing marks",
-                "operationId": "17238cbdb5bae011ba7c8cb7dd373166",
+                "operationId": "b3de0007dbaf78ccc1a6f2cab5f813ad",
                 "parameters": [
                     {
                         "name": "id",
@@ -669,7 +669,7 @@
                     "marks"
                 ],
                 "summary": "Delete a marks by ID",
-                "operationId": "4e96fe44070fb218bf151fcb99762ae9",
+                "operationId": "d558527046f4f0208726f856fd412a23",
                 "parameters": [
                     {
                         "name": "id",
@@ -694,13 +694,13 @@
                 }
             }
         },
-        "/notification": {
+        "/api/v1/notification": {
             "get": {
                 "tags": [
                     "notification"
                 ],
                 "summary": "Get a list of all notifications",
-                "operationId": "374cf5759ae311f38666cfd58baeeee3",
+                "operationId": "c3a8b48422782f6e9844ece594fa2a24",
                 "responses": {
                     "200": {
                         "description": "List of notifications"
@@ -714,13 +714,13 @@
                 }
             }
         },
-        "/notification/{id}": {
+        "/api/v1/notification/{id}": {
             "delete": {
                 "tags": [
                     "notification"
                 ],
                 "summary": "Delete a notification by ID",
-                "operationId": "bd79e4667720f473600515b005c5784a",
+                "operationId": "9dc99d82edee85a0c26061c5a122f11a",
                 "parameters": [
                     {
                         "name": "id",
@@ -745,13 +745,13 @@
                 }
             }
         },
-        "/paper": {
+        "/api/v1/paper": {
             "get": {
                 "tags": [
                     "paper"
                 ],
                 "summary": "Get a list of all papers",
-                "operationId": "d58075c7926292a5de2a63061bde3e55",
+                "operationId": "472cc96601cadb8eace43d5ce20b0244",
                 "responses": {
                     "200": {
                         "description": "List of papers"
@@ -769,7 +769,7 @@
                     "paper"
                 ],
                 "summary": "Create a new paper",
-                "operationId": "3941b36bac78c8f5f9cf4d07806e3ca3",
+                "operationId": "c7bdc1e058eaeea71a8d87f92c78e107",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -804,13 +804,13 @@
                 }
             }
         },
-        "/paper/{id}": {
+        "/api/v1/paper/{id}": {
             "get": {
                 "tags": [
                     "paper"
                 ],
                 "summary": "Get a specific paper by ID",
-                "operationId": "bae445e170aa0aa12a0965d1ad868924",
+                "operationId": "c2ca3854475032713e4fb954c75d3efc",
                 "parameters": [
                     {
                         "name": "id",
@@ -839,7 +839,7 @@
                     "paper"
                 ],
                 "summary": "Update an existing past paper",
-                "operationId": "c032fe60d70805ccd1fc5a25e6af8e81",
+                "operationId": "bb637d2024d219c033ce357e0fb0ead8",
                 "parameters": [
                     {
                         "name": "id",
@@ -892,7 +892,7 @@
                     "paper"
                 ],
                 "summary": "Delete a past paper by ID",
-                "operationId": "da342e2727072bc7f428d8dd23d5ca0d",
+                "operationId": "102892a1c694e3761aef9677c06a95f2",
                 "parameters": [
                     {
                         "name": "id",
@@ -917,13 +917,13 @@
                 }
             }
         },
-        "/school": {
+        "/api/v1/school": {
             "get": {
                 "tags": [
                     "school"
                 ],
                 "summary": "Get a list of all schools",
-                "operationId": "a797b139084f697bd0ff6e06407c9857",
+                "operationId": "5b1791326b5e058824577b6c631e4338",
                 "responses": {
                     "200": {
                         "description": "List of schools"
@@ -941,7 +941,7 @@
                     "school"
                 ],
                 "summary": "Create a new school",
-                "operationId": "38dc7d795b63ce7751a0e25701905827",
+                "operationId": "9811649d667cd75be6f0cc930d7591d7",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -976,13 +976,13 @@
                 }
             }
         },
-        "/school/{id}": {
+        "/api/v1/school/{id}": {
             "get": {
                 "tags": [
                     "school"
                 ],
                 "summary": "Get a specific school by ID",
-                "operationId": "57b0e5960851cb1483a8e4cfbbecdaa8",
+                "operationId": "70d0093e9c1c779a82c3bed2fe80a430",
                 "parameters": [
                     {
                         "name": "id",
@@ -1011,7 +1011,7 @@
                     "school"
                 ],
                 "summary": "Update an existing school",
-                "operationId": "4c5044fc02583f859c77bc752a373de9",
+                "operationId": "b8aa5fbf1d9aa51a35f263f30338091d",
                 "parameters": [
                     {
                         "name": "id",
@@ -1064,7 +1064,7 @@
                     "school"
                 ],
                 "summary": "Delete a school by ID",
-                "operationId": "51cc4ecdaca2e43862fb6aeead1516f7",
+                "operationId": "1cb6bc1b511842d8c393c24f93afe0ae",
                 "parameters": [
                     {
                         "name": "id",
@@ -1089,13 +1089,13 @@
                 }
             }
         },
-        "/subject": {
+        "/api/v1/subject": {
             "get": {
                 "tags": [
                     "subject"
                 ],
                 "summary": "Get a list of all subjects",
-                "operationId": "f1813fc79be393990fe522f914a791fe",
+                "operationId": "f1fb78190da760c370fa353ec00febda",
                 "responses": {
                     "200": {
                         "description": "List of subjects"
@@ -1113,7 +1113,7 @@
                     "subject"
                 ],
                 "summary": "Create a new subject",
-                "operationId": "d408fb1b4958123bf1d5cf3f774e33ab",
+                "operationId": "d20058249414588918f9d0ce9f7bbf98",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -1148,13 +1148,13 @@
                 }
             }
         },
-        "/subject/{id}": {
+        "/api/v1/subject/{id}": {
             "get": {
                 "tags": [
                     "subject"
                 ],
                 "summary": "Get a specific subject by ID",
-                "operationId": "9541bfef1e6079847725830e5d93b22d",
+                "operationId": "d4ed959d97eaa2e516ee32fc3b08d164",
                 "parameters": [
                     {
                         "name": "id",
@@ -1183,7 +1183,7 @@
                     "subject"
                 ],
                 "summary": "Update an existing subject",
-                "operationId": "4714951461f8b03f716f8c6b74ddfe93",
+                "operationId": "911c32f8898466e0584178632b31f3fb",
                 "parameters": [
                     {
                         "name": "id",
@@ -1236,7 +1236,7 @@
                     "subject"
                 ],
                 "summary": "Delete a subject by ID",
-                "operationId": "61afd9e5d731fe4047f01ebd7f4598a4",
+                "operationId": "5eeb56e4df38b1a619d71d8e9b2f8cfc",
                 "parameters": [
                     {
                         "name": "id",

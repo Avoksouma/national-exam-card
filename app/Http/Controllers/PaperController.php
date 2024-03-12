@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Paper;
 use App\Models\Subject;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,12 +22,12 @@ class PaperController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except(['all']);
     }
 
     /**
      * @OA\Get(
-     *     path="/paper",
+     *     path="/api/v1/paper",
      *     summary="Get a list of all papers",
      *     tags={"paper"},
      *     @OA\Response(response="200", description="List of papers"),
@@ -34,6 +35,12 @@ class PaperController extends Controller
      *     @OA\Response(response="404", description="Not Found")
      * )
      */
+    public function all(): JsonResponse
+    {
+        $papers = Paper::paginate(10);
+        return response()->json(['papers' => $papers]);
+    }
+
     public function index(): View
     {
         $papers = Paper::paginate(10);
@@ -48,7 +55,7 @@ class PaperController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/paper",
+     *     path="/api/v1/paper",
      *     summary="Create a new paper",
      *     tags={"paper"},
      *     @OA\Response(response="201", description="Past paper created successfully"),
@@ -90,7 +97,7 @@ class PaperController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/paper/{id}",
+     *     path="/api/v1/paper/{id}",
      *     summary="Get a specific paper by ID",
      *     tags={"paper"},
      *     @OA\Parameter(
@@ -118,7 +125,7 @@ class PaperController extends Controller
 
     /**
      * @OA\Put(
-     *     path="/paper/{id}",
+     *     path="/api/v1/paper/{id}",
      *     summary="Update an existing past paper",
      *     tags={"paper"},
      *     @OA\Parameter(
@@ -166,7 +173,7 @@ class PaperController extends Controller
 
     /**
      * @OA\Delete(
-     *     path="/paper/{id}",
+     *     path="/api/v1/paper/{id}",
      *     summary="Delete a past paper by ID",
      *     tags={"paper"},
      *     @OA\Parameter(

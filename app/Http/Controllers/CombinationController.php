@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Combination;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,12 +21,12 @@ class CombinationController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except(['all']);
     }
 
     /**
      * @OA\Get(
-     *     path="/combination",
+     *     path="/api/v1/combination",
      *     summary="Get a list of all combinations",
      *     tags={"combination"},
      *     @OA\Response(response="200", description="List of combinations"),
@@ -33,6 +34,12 @@ class CombinationController extends Controller
      *     @OA\Response(response="404", description="Not Found")
      * )
      */
+    public function all(): JsonResponse
+    {
+        $combinations = Combination::paginate(10);
+        return response()->json(['combination' => $combinations]);
+    }
+
     public function index(): View
     {
         $combinations = Combination::paginate(10);
@@ -46,7 +53,7 @@ class CombinationController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/combination",
+     *     path="/api/v1/combination",
      *     summary="Create a new combination",
      *     tags={"combination"},
      *     @OA\Response(response="201", description="Combination created successfully"),
@@ -86,7 +93,7 @@ class CombinationController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/combination/{id}",
+     *     path="/api/v1/combination/{id}",
      *     summary="Get a specific combination by ID",
      *     tags={"combination"},
      *     @OA\Parameter(
@@ -113,7 +120,7 @@ class CombinationController extends Controller
 
     /**
      * @OA\Put(
-     *     path="/combination/{id}",
+     *     path="/api/v1/combination/{id}",
      *     summary="Update an existing combination",
      *     tags={"combination"},
      *     @OA\Parameter(
@@ -160,7 +167,7 @@ class CombinationController extends Controller
 
     /**
      * @OA\Delete(
-     *     path="/combination/{id}",
+     *     path="/api/v1/combination/{id}",
      *     summary="Delete a combination by ID",
      *     tags={"combination"},
      *     @OA\Parameter(

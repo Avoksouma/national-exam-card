@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\School;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,12 +21,12 @@ class SchoolController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except(['all']);
     }
 
     /**
      * @OA\Get(
-     *     path="/school",
+     *     path="/api/v1/school",
      *     summary="Get a list of all schools",
      *     tags={"school"},
      *     @OA\Response(response="200", description="List of schools"),
@@ -33,6 +34,12 @@ class SchoolController extends Controller
      *     @OA\Response(response="404", description="Not Found")
      * )
      */
+    public function all(): JsonResponse
+    {
+        $schools = School::paginate(10);
+        return response()->json(['schools' => $schools]);
+    }
+
     public function index(): View
     {
         $schools = School::paginate(10);
@@ -46,7 +53,7 @@ class SchoolController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/school",
+     *     path="/api/v1/school",
      *     summary="Create a new school",
      *     tags={"school"},
      *     @OA\Response(response="201", description="School created successfully"),
@@ -88,7 +95,7 @@ class SchoolController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/school/{id}",
+     *     path="/api/v1/school/{id}",
      *     summary="Get a specific school by ID",
      *     tags={"school"},
      *     @OA\Parameter(
@@ -115,7 +122,7 @@ class SchoolController extends Controller
 
     /**
      * @OA\Put(
-     *     path="/school/{id}",
+     *     path="/api/v1/school/{id}",
      *     summary="Update an existing school",
      *     tags={"school"},
      *     @OA\Parameter(
@@ -164,7 +171,7 @@ class SchoolController extends Controller
 
     /**
      * @OA\Delete(
-     *     path="/school/{id}",
+     *     path="/api/v1/school/{id}",
      *     summary="Delete a school by ID",
      *     tags={"school"},
      *     @OA\Parameter(
