@@ -21,13 +21,13 @@ use App\Http\Controllers\CalendarEventController;
 |
 */
 
-Route::/*middleware(['auth:sanctum'])->*/prefix('v1/application')->name('api.')->group(function () {
-    Route::get('/', [ApplicationController::class, 'all'])->name('application');
-    Route::get('/', [CalendarEventController::class, 'all'])->name('calendar');
-    Route::get('/', [CombinationController::class, 'all'])->name('combination');
-    Route::get('/', [MarksController::class, 'all'])->name('marks');
-    Route::get('/', [NotificationController::class, 'all'])->name('notification');
-    Route::get('/', [PaperController::class, 'all'])->name('paper');
-    Route::get('/', [SchoolController::class, 'all'])->name('school');
-    Route::get('/', [SubjectController::class, 'all'])->name('subject');
+Route::/*middleware(['auth:sanctum'])->*/prefix('v1')->name('api.')->group(function () {
+    Route::get('/application', [ApplicationController::class, 'all'])->name('application');
+    Route::get('/calendar', [CalendarEventController::class, 'all'])->name('calendar');
+    Route::get('/combination', [CombinationController::class, 'all'])->name('combination');
+    Route::get('/marks', [MarksController::class, 'all'])->name('marks');
+    Route::get('/notification', [NotificationController::class, 'all'])->name('notification');
+    Route::get('/paper', [PaperController::class, 'all'])->name('paper');
+    Route::get('/school', [SchoolController::class, 'all'])->name('school');
+    Route::get('/subject', [SubjectController::class, 'all'])->name('subject');
 });
