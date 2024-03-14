@@ -37,7 +37,7 @@ class CombinationController extends Controller
     public function all(): JsonResponse
     {
         $combinations = Combination::paginate(10);
-        return response()->json(['combination' => $combinations]);
+        return response()->json(['combinations' => $combinations]);
     }
 
     public function index(): View
