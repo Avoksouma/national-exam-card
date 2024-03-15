@@ -8,23 +8,60 @@ use App\Models\Subject;
 use App\Mail\WelcomeMail;
 use Illuminate\View\View;
 use App\Models\Application;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\RedirectResponse;
 
+/**
+ * Class AuthController
+ * @package App\Http\Controllers
+ * @OA\Tag(
+ *     name="auth",
+ *     description="Authenticate user"
+ * )
+ */
 class AuthController extends Controller
 { // ! reset password, remember on login
     public function __construct()
     {
         // $this->middleware('admin')->only(['users', 'update', 'edit']);
-        $this->middleware('guest')->except(['logout', 'users', 'students', 'profile', 'edit', 'update']);
+        $this->middleware('guest')->except([
+            'logout', 'users', 'students', 'profile', 'edit', 'update', 'signin', 'signup'
+        ]);
     }
 
     public function showLogin(): View
     {
         return view('auth.login');
+    }
+
+    /**
+     * @OA\Post(
+     *     path="/api/v1/signin",
+     *     summary="Sign in into my account",
+     *     tags={"auth"},
+     *     @OA\Response(response="201", description="Signed in successfully"),
+     *     @OA\Response(response="401", description="Unauthorized"),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             @OA\Property(property="email", type="string", example="my@email.com"),
+     *             @OA\Property(property="password", type="string", example="secret"),
+     *         )
+     *     )
+     * )
+     */
+    public function signin(Request $request): JsonResponse
+    {
+        $data = $request->json()->all();
+        $user =  User::where('email', $data['email'])->first();
+
+        if (Hash::check($data['password'], $user->password))
+            return response()->json(['user' => $user]);
+        else return response()->json(['user' => null]);
     }
 
     public function login(Request $request): RedirectResponse
@@ -63,6 +100,43 @@ class AuthController extends Controller
         ]);
 
         return redirect()->route('user.index');
+    }
+
+    /**
+     * @OA\Post(
+     *     path="/api/v1/signup",
+     *     summary="Create a free account",
+     *     tags={"auth"},
+     *     @OA\Response(response="201", description="Signed up successfully"),
+     *     @OA\Response(response="401", description="Unauthorized"),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             @OA\Property(property="name", type="string", example="my name"),
+     *             @OA\Property(property="email", type="string", example="my@email.com"),
+     *             @OA\Property(property="password", type="string", example="secret"),
+     *         )
+     *     )
+     * )
+     */
+    public function signup(Request $request): JsonResponse
+    {
+        $data = $request->json()->all();
+
+        $user = User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password'])
+        ]);
+
+        try {
+            Mail::to($data['email'])->send(new WelcomeMail());
+        } catch (\Exception $e) {
+        }
+
+        return response()->json(['user' => $user]);
+
+        return back();
     }
 
     public function register(Request $request): RedirectResponse

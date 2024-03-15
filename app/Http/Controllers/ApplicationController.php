@@ -24,7 +24,7 @@ class ApplicationController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except(['all']);
+        $this->middleware('auth')->except(['all', 'save']);
     }
 
     /**
@@ -74,13 +74,46 @@ class ApplicationController extends Controller
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(
-     *             @OA\Property(property="title", type="string", example="Sample Title"),
-     *             @OA\Property(property="content", type="string", example="Sample content"),
-     *             @OA\Property(property="author_id", type="integer", example=1)
+     *             @OA\Property(property="first_name", type="string", example="jane"),
+     *             @OA\Property(property="last_name", type="string", example="doe"),
+     *             @OA\Property(property="contact_person", type="string", example="guardian"),
+     *             @OA\Property(property="contact_details", type="string", example="guardian@email.com"),
+     *             @OA\Property(property="combination", type="integer", example=1),
+     *             @OA\Property(property="gender", type="string", example="female"),
+     *             @OA\Property(property="father", type="string", example="papa"),
+     *             @OA\Property(property="mother", type="string", example="mama"),
+     *             @OA\Property(property="city", type="string", example="kigali"),
+     *             @OA\Property(property="dob", type="string", example="2024-03-15 16:25:04"),
+     *             @OA\Property(property="school", type="integer", example=1),
      *         )
      *     )
      * )
      */
+    public function save(Request $request): JsonResponse
+    {
+        $data = $request->json()->all();
+
+        $application = Application::create([
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'school_id' => $data['school'],
+            'gender' => $data['gender'],
+            'father' => $data['father'],
+            'mother' => $data['mother'],
+            'city' => $data['city'],
+            'status' => $data['status'] ?: 'pending',
+            'combination_id' => $data['combination'],
+            'nationality' => $data['nationality'],
+            'contact_person' => $data['contact_person'],
+            'contact_details' => $data['contact_details'],
+            'dob' => $data['dob'],
+            'description' => $data['description'],
+            'user_id' => $data['id'],
+        ]);
+
+        return response()->json(['application' => $application]);
+    }
+
     public function store(Request $request): RedirectResponse
     {
         $request->validate([

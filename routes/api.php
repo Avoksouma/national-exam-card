@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MarksController;
 use App\Http\Controllers\PaperController;
 use App\Http\Controllers\SchoolController;
@@ -22,7 +23,10 @@ use App\Http\Controllers\CalendarEventController;
 */
 
 Route::/*middleware(['auth:sanctum'])->*/prefix('v1')->name('api.')->group(function () {
+    Route::post('/signup', [AuthController::class, 'signup'])->name('signup');
+    Route::post('/signin', [AuthController::class, 'signin'])->name('signin');
     Route::get('/application', [ApplicationController::class, 'all'])->name('application');
+    Route::post('/application', [ApplicationController::class, 'save'])->name('application.save');
     Route::get('/calendar', [CalendarEventController::class, 'all'])->name('calendar');
     Route::get('/combination', [CombinationController::class, 'all'])->name('combination');
     Route::get('/marks', [MarksController::class, 'all'])->name('marks');
