@@ -23,12 +23,16 @@
     <div class='col-md-3'>
         <div class='card card-body border-0 bg-warning shadow-sm'>
             <h5 class='fw-normal text-uppercase'>{{ __('Approved') }}</h5>
-            <h1>0 <i class="bi bi-person-check float-end"></i></h1>
+            <h1>{{ $approved }} <i class="bi bi-person-check float-end"></i></h1>
             <p class="text-muted mb-0">12% {{ __('from last month') }}</p>
         </div>
     </div>
-</div>
-<div class="col-12 mt-2">
-    <h3 class='my-3'>{{ __('Top Students') }}</h3>
-    <canvas id="myChart" width="400" height="150"></canvas>
+    <div class="col-md-8 mt-2">
+        <h3 class='my-3'>{{ __('Top Students') }}</h3>
+        <canvas id="myChart" width="400" height="200"></canvas>
+    </div>
+    <div class="col-md-4 mt-2">
+        <h3 class='my-3'>{{ __('Student Applications') }}</h3>
+        <canvas id="applicationChart" width="200" height="200"></canvas>
+    </div>
 </div>

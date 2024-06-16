@@ -67,12 +67,17 @@ class DefaultController extends Controller
         $schools = School::count();
         $applications = Application::count();
         $students = User::where('role', 'student')->count();
+        $approved = Application::where('status', 'approved')->count();
+
 
         $marks = Marks::select('student_id', DB::raw('SUM(marks) as total_marks'))
             ->groupBy('student_id')->orderBy('total_marks', 'desc')->limit(10)
             ->get();
 
-        return view('dashboard.index', compact('students', 'schools', 'applications', 'marks'));
+        $applicants = Application::select('status', DB::raw('COUNT(id) as total'))
+            ->groupBy('status')->limit(10)->get();
+
+        return view('dashboard.index', compact('students', 'schools', 'applications', 'marks', 'approved', 'applicants'));
     }
 
     public function report(Request $request): View | JsonResponse

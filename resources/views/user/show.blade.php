@@ -82,7 +82,10 @@
                 </button>
             </div>
             <div class='d-flex justify-content-between'>
-                <h3>Marks Report</h3>
+                <div class='d-flex mb-3'>
+                    <img class='me-3 rounded-pill logo' alt='logo' src='/img/logo.png' height='64' width='64' />
+                    <h3 class='my-auto'>Marks Report</h3>
+                </div>
                 <form method='post' action='#' class='w-50 row justify-content-end hide-me'>
                     <div class='col-4'>
                         <input class='form-control' type='number' min='1900' max='2100' name='year'
@@ -139,10 +142,12 @@
 @endsection
 @section('scripts')
     <script>
+        document.querySelector('.logo').style.display = 'none'
         document.querySelector('.show-credit').style.display = 'none'
 
         function printReport() {
             document.querySelector('.sidebar').style.width = 0
+            document.querySelector('.logo').style.display = ''
             document.querySelector('.show-credit').style.display = ''
             const elementsToHide = document.querySelectorAll('.hide-me');
             elementsToHide.forEach(element => {
@@ -151,6 +156,7 @@
 
             window.print();
             setTimeout(() => {
+                document.querySelector('.logo').style.display = 'none'
                 document.querySelector('.sidebar').style.width = 'inherit'
                 document.querySelector('.show-credit').style.display = 'none'
                 elementsToHide.forEach(element => {

@@ -130,7 +130,7 @@ class AuthController extends Controller
         ]);
 
         try {
-            Mail::to($data['email'])->send(new WelcomeMail());
+            // Mail::to($data['email'])->send(new WelcomeMail());
         } catch (\Exception $e) {
         }
 

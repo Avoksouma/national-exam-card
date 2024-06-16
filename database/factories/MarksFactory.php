@@ -22,8 +22,8 @@ class MarksFactory extends Factory
         $subjectIds = Subject::pluck('id')->toArray();
 
         return [
-            'marks' => $this->faker->numberBetween(10, 90),
-            'year' => $this->faker->numberBetween(2015, 2024),
+            'marks' => $this->faker->numberBetween(10, 20),
+            'year' => 2024,
             'subject_id' => $this->faker->randomElement($subjectIds),
             'student_id' => $this->faker->randomElement($studentIds),
             'user_id' => $this->faker->randomElement($userIds),
