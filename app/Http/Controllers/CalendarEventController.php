@@ -193,9 +193,10 @@ class CalendarEventController extends Controller
      *     @OA\Response(response="404", description="Not Found")
      * )
      */
-    public function destroy(CalendarEvent $calendarEvent): JsonResponse
+    public function destroy(int $id): JsonResponse
     {
-        $calendarEvent->delete();
+        $event = CalendarEvent::find($id);
+        if ($event)  $event->delete();
         // return redirect()->route('calendar.index');
         return response()->json(['msg' => 'done']);
     }
