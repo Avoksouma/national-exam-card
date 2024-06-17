@@ -154,7 +154,7 @@ class CalendarEventController extends Controller
      *     )
      * )
      */
-    public function update(Request $request, CalendarEvent $calendarEvent): JsonResponse
+    public function update(Request $request, int $id): JsonResponse
     {
         $request->validate([
             'description' => ['required'],
@@ -163,13 +163,15 @@ class CalendarEventController extends Controller
             'name' => ['required'],
         ]);
 
-        $calendarEvent->update([
-            'name' => $request['name'],
-            'color' => $request['color'],
-            'end_date' => Carbon::parse($request['endDate']),
-            'start_date' => Carbon::parse($request['startDate']),
-            'description' => $request['description'],
-        ]);
+        $event = CalendarEvent::find($id);
+        if ($event)
+            $event->update([
+                'name' => $request['name'],
+                'color' => $request['color'],
+                'end_date' => Carbon::parse($request['endDate']),
+                'start_date' => Carbon::parse($request['startDate']),
+                'description' => $request['description'],
+            ]);
 
         return response()->json(['msg' => 'done']);
 
