@@ -21,7 +21,6 @@ class CalendarEventController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except(['all']);
     }
 
     /**
@@ -45,15 +44,7 @@ class CalendarEventController extends Controller
             'end_date as endDate',
             'is_public as isPublic',
             'start_date as startDate',
-
-        )->where(function ($query) use ($userId) {
-            $query->where('is_public', true)
-                ->orWhere(function ($query) use ($userId) {
-                    $query->where('is_public', false)
-                        ->where('user_id', $userId);
-                });
-        })
-            ->paginate(100);
+        )->where('is_public', true)->orWhere('user_id', $userId)->paginate(100);
 
         return response()->json(['events' => $calendarEvents]);
     }
@@ -86,7 +77,7 @@ class CalendarEventController extends Controller
      *     )
      * )
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request): JsonResponse
     {
         $request->validate([
             'description' => ['required'],
@@ -105,7 +96,9 @@ class CalendarEventController extends Controller
             'user_id' => Auth::id(),
         ]);
 
-        return redirect()->route('calendar.index');
+        return response()->json(['msg' => 'done']);
+
+        // return redirect()->route('calendar.index');
     }
 
     /**
@@ -160,7 +153,7 @@ class CalendarEventController extends Controller
      *     )
      * )
      */
-    public function update(Request $request, CalendarEvent $calendarEvent): RedirectResponse
+    public function update(Request $request, CalendarEvent $calendarEvent): JsonResponse
     {
         $request->validate([
             'description' => ['required'],
@@ -177,7 +170,9 @@ class CalendarEventController extends Controller
             'description' => $request['description'],
         ]);
 
-        return redirect()->route('calendar.index');
+        return response()->json(['msg' => 'done']);
+
+        // return redirect()->route('calendar.index');
     }
 
     /**
@@ -197,9 +192,10 @@ class CalendarEventController extends Controller
      *     @OA\Response(response="404", description="Not Found")
      * )
      */
-    public function destroy(CalendarEvent $calendarEvent): RedirectResponse
+    public function destroy(CalendarEvent $calendarEvent): JsonResponse
     {
         $calendarEvent->delete();
-        return redirect()->route('calendar.index');
+        // return redirect()->route('calendar.index');
+        return response()->json(['msg' => 'done']);
     }
 }
