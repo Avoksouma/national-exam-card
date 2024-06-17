@@ -575,7 +575,7 @@ const Calendar = () => {
     content;
 
     if (confirm("You are about to delete an event :(")) {
-      fetch(`/calendar/${id}`, {
+      fetch(`/calendar/${currentEvent.id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
