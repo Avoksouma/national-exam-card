@@ -49,7 +49,10 @@
             @else
                 <div class="tab-pane fade" id="year" role="tabpanel" aria-labelledby="year-tab">
         @endif
-        <h2>Top Marks by Year</h2>
+        <div class='d-flex mb-3'>
+            <img class='me-3 rounded-pill logo' alt='logo' src='/img/logo.png' height='64' width='64' />
+            <h2 class='my-auto'>Top Marks by Year</h2>
+        </div>
         <table class="table table-bordered table-hover">
             <thead class="table-light">
                 <tr>
@@ -72,7 +75,8 @@
                         <td class='hide-me'>
                             @if (in_array(Auth::user()->role, ['admin', 'staff']))
                                 <div class='btn-group'>
-                                    <a class='btn btn-sm btn-success' href='{{ route('student.show', $mark->student_id) }}'>
+                                    <a class='btn btn-sm btn-success'
+                                        href='{{ route('student.show', $mark->student_id) }}'>
                                         <i class='bi bi-eye'></i>
                                     </a>
                                     <a class='btn btn-sm btn-info' href='{{ route('marks.edit', $mark->id) }}'>
@@ -92,7 +96,10 @@
             <div class="tab-pane fade" id="subject" role="tabpanel" aria-labelledby="subject-tab">
     @endif
     <div class='d-flex justify-content-between'>
-        <h2>Top Marks by Subject</h2>
+        <div class='d-flex mb-3'>
+            <img class='me-3 rounded-pill logo' alt='logo' src='/img/logo.png' height='64' width='64' />
+            <h2 class='my-auto'>Top Marks by Subject</h2>
+        </div>
         <form method='post' action='#' class='w-50 row justify-content-end hide-me'>
             <div class='col-4'>
                 <input class='form-control' type='number' min='1900' max='2100' name='year'
@@ -155,7 +162,10 @@
             <div class="tab-pane fade" id="student" role="tabpanel" aria-labelledby="student-tab">
     @endif
     <div class='d-flex justify-content-between'>
-        <h2>Top Marks by Student</h2>
+        <div class='d-flex mb-3'>
+            <img class='me-3 rounded-pill logo' alt='logo' src='/img/logo.png' height='64' width='64' />
+            <h2 class='my-auto'>Top Marks by Student</h2>
+        </div>
         <form method='post' action='#' class='w-50 row justify-content-end hide-me'>
             <div class='col-4'>
                 <input class='form-control' type='number' min='1900' max='2100' name='year'
@@ -222,10 +232,12 @@
 @endsection
 @section('scripts')
     <script>
+        document.querySelector('.logo').style.display = 'none'
         document.querySelector('.show-credit').style.display = 'none'
 
         function printReport() {
             document.querySelector('.sidebar').style.width = 0
+            document.querySelector('.logo').style.display = ''
             document.querySelector('.show-credit').style.display = ''
             const elementsToHide = document.querySelectorAll('.hide-me');
             elementsToHide.forEach(element => {
@@ -234,6 +246,7 @@
 
             window.print();
             setTimeout(() => {
+                document.querySelector('.logo').style.display = 'none'
                 document.querySelector('.sidebar').style.width = 'inherit'
                 document.querySelector('.show-credit').style.display = 'none'
                 elementsToHide.forEach(element => {
