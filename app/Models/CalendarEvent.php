@@ -11,7 +11,7 @@ class CalendarEvent extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'start', 'stop', 'color', 'description', 'user_id'
+        'name', 'start_date', 'end_date', 'color', 'description', 'is_public', 'user_id'
     ];
 
     public function user(): BelongsTo

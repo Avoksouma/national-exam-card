@@ -432,33 +432,33 @@ const Calendar = () => {
   { name: "black", value: "secondary" }];
 
 
-  console.log("STEP #1 : GET events via API / AJAX");
+  const thisMonth = new Date().
+  toLocaleDateString("en-GB", {
+    year: "numeric",
+    month: "2-digit" }).
+
+  split("/").
+  reverse().
+  join("-");
 
   const [events, setEvents] = React.useState([
-  {
-    id: 1,
-    color: "info",
-    name: "birthday",
-    description: "Give me cake",
-    endDate: "2022-06-02T12:00:11.771Z",
-    startDate: "2022-06-01T12:00:11.771Z" },
+    // {
+    //   id: 1,
+    //   color: "info",
+    //   name: "birthday",
+    //   description: "Give me cake",
+    //   endDate: `${thisMonth}-15T12:00:11.771Z`,
+    //   startDate: `${thisMonth}-14T12:00:11.771Z`
+    // }
+  ]);
 
-  {
-    id: 2,
-    color: "success",
-    name: "visit someone",
-    description: "take a car, drive there, say hi...",
-    endDate: "2022-06-14T12:00:11.771Z",
-    startDate: "2022-06-10T12:00:11.771Z" },
-
-  {
-    id: 3,
-    color: "warning",
-    name: "important meeting",
-    description: "don't attend...",
-    endDate: "2022-06-23T12:00:51.462Z",
-    startDate: "2022-06-20T12:00:51.462Z" }]);
-
+  React.useEffect(() => {
+    fetch("/api/v1/calendar").
+    then(res => res.json()).
+    then(data => {var _data$events;
+      setEvents(data === null || data === void 0 ? void 0 : (_data$events = data.events) === null || _data$events === void 0 ? void 0 : _data$events.data);
+    });
+  }, []);
 
   const [monthDifference, setMonthDifference] = React.useState(0);
   const [currentEvent, setCurrentEvent] = React.useState({});
@@ -507,7 +507,23 @@ const Calendar = () => {
   };
 
   const saveEvent = ({ name, description, start, end, color }) => {
-    console.log("STEP #2 : SAVE event via API / AJAX");
+    const csrfToken = document.head.querySelector('meta[name="csrf-token"]').
+    content;
+
+    fetch("/calendar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-TOKEN": csrfToken },
+
+      body: JSON.stringify({
+        name,
+        color,
+        description,
+        endDate: end,
+        startDate: start }) });
+
+
 
     setEvents([
     ...events,
@@ -523,7 +539,23 @@ const Calendar = () => {
   };
 
   const updateEvent = ({ id, name, description, start, end, color }) => {
-    console.log("STEP #3 : UPDATE event via API / AJAX");
+    const csrfToken = document.head.querySelector('meta[name="csrf-token"]').
+    content;
+
+    fetch(`/calendar/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-TOKEN": csrfToken },
+
+      body: JSON.stringify({
+        name,
+        color,
+        description,
+        endDate: end,
+        startDate: start }) });
+
+
 
     setEvents([
     ...events.filter(event => event.id != id),
@@ -539,9 +571,17 @@ const Calendar = () => {
   };
 
   const deleteEvent = () => {
-    console.log("STEP #4 : DELETE event via API / AJAX");
+    const csrfToken = document.head.querySelector('meta[name="csrf-token"]').
+    content;
 
     if (confirm("You are about to delete an event :(")) {
+      fetch(`/calendar/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRF-TOKEN": csrfToken } });
+
+
       setEvents([...events.filter(event => event.id != currentEvent.id)]);
       setShowModal(false);
     }

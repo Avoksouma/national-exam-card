@@ -36,7 +36,25 @@ class CalendarEventController extends Controller
      */
     public function all(): JsonResponse
     {
-        $calendarEvents = CalendarEvent::paginate(10);
+        $userId = Auth::id();
+        $calendarEvents = CalendarEvent::select(
+            'id',
+            'name',
+            'color',
+            'description',
+            'end_date as endDate',
+            'is_public as isPublic',
+            'start_date as startDate',
+
+        )->where(function ($query) use ($userId) {
+            $query->where('is_public', true)
+                ->orWhere(function ($query) use ($userId) {
+                    $query->where('is_public', false)
+                        ->where('user_id', $userId);
+                });
+        })
+            ->paginate(100);
+
         return response()->json(['events' => $calendarEvents]);
     }
 
@@ -71,18 +89,19 @@ class CalendarEventController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'min:3', 'max:50'],
             'description' => ['required'],
-            'start' => ['required'],
-            'stop' => ['required'],
+            'startDate' => ['required'],
+            'endDate' => ['required'],
+            'name' => ['required'],
         ]);
 
         CalendarEvent::create([
             'name' => $request['name'],
-            'stop' => $request['stop'],
-            'start' => $request['start'],
             'color' => $request['color'],
+            'end_date' => $request['endDate'],
+            'start_date' => $request['startDate'],
             'description' => $request['description'],
+            'is_public' => in_array(Auth::user()->role, ['staff', 'admin']),
             'user_id' => Auth::id(),
         ]);
 
@@ -144,17 +163,17 @@ class CalendarEventController extends Controller
     public function update(Request $request, CalendarEvent $calendarEvent): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'min:3', 'max:50'],
             'description' => ['required'],
-            'start' => ['required'],
-            'stop' => ['required'],
+            'startDate' => ['required'],
+            'endDate' => ['required'],
+            'name' => ['required'],
         ]);
 
         $calendarEvent->update([
             'name' => $request['name'],
-            'stop' => $request['stop'],
-            'start' => $request['start'],
             'color' => $request['color'],
+            'end_date' => $request['endDate'],
+            'start_date' => $request['startDate'],
             'description' => $request['description'],
         ]);
 

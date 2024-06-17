@@ -16,10 +16,11 @@ class CreateCalendarEventsTable extends Migration
         Schema::create('calendar_events', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->datetime('stop');
-            $table->datetime('start');
+            $table->datetime('end_date');
+            $table->datetime('start_date');
             $table->string('color')->nullable();
             $table->text('description')->nullable();
+            $table->boolean('is_public')->default(false);
             $table->softDeletes();
             $table->timestamps();
             $table->unsignedBigInteger('user_id');
