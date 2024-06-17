@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Carbon\Carbon;
 
 /**
  * Class CalendarEventController
@@ -89,8 +90,8 @@ class CalendarEventController extends Controller
         CalendarEvent::create([
             'name' => $request['name'],
             'color' => $request['color'],
-            'end_date' => $request['endDate'],
-            'start_date' => $request['startDate'],
+            'end_date' => Carbon::parse($request['endDate']),
+            'start_date' => Carbon::parse($request['startDate']),
             'description' => $request['description'],
             'is_public' => in_array(Auth::user()->role, ['staff', 'admin']),
             'user_id' => Auth::id(),
@@ -165,8 +166,8 @@ class CalendarEventController extends Controller
         $calendarEvent->update([
             'name' => $request['name'],
             'color' => $request['color'],
-            'end_date' => $request['endDate'],
-            'start_date' => $request['startDate'],
+            'end_date' => Carbon::parse($request['endDate']),
+            'start_date' => Carbon::parse($request['startDate']),
             'description' => $request['description'],
         ]);
 
