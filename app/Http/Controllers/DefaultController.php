@@ -120,9 +120,10 @@ class DefaultController extends Controller
             $topMarksByStudent = $topMarksByStudent->where('marks.year', $request['year']);
         }
 
+        $applications = Application::paginate(50);
         $topMarksBySubject = $topMarksBySubject->get();
         $topMarksByStudent = $topMarksByStudent->get();
 
-        return view('dashboard.report', compact('tab', 'colors', 'subjects', 'students', 'topMarksByYear', 'topMarksBySubject', 'topMarksByStudent'));
+        return view('dashboard.report', compact('tab', 'colors', 'subjects', 'students', 'applications', 'topMarksByYear', 'topMarksBySubject', 'topMarksByStudent'));
     }
 }

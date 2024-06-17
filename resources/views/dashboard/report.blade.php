@@ -36,6 +36,17 @@
                         role="tab" aria-controls="student" aria-selected="false">Marks by Student</button>
                 @endif
             </li>
+            <li class="nav-item" role="presentation">
+                @if ($tab == 'application')
+                    <button class="nav-link active" id="application-tab" data-bs-toggle="tab" data-bs-target="#application"
+                        type="button" role="tab" aria-controls="application" aria-selected="true">Student
+                        Applications</button>
+                @else
+                    <button class="nav-link" id="application-tab" data-bs-toggle="tab" data-bs-target="#application"
+                        type="button" role="tab" aria-controls="application" aria-selected="false">Student
+                        Applications</button>
+                @endif
+            </li>
         </ul>
         <div class='hide-me float-end'>
             <button class='btn btn-info ms-4' onclick='printReport()'>
@@ -217,6 +228,53 @@
                             </div>
                         @endif
                     </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+    </div>
+    @if ($tab == 'application')
+        <div class="tab-pane fade show active" id="application" role="tabpanel" aria-labelledby="application-tab">
+        @else
+            <div class="tab-pane fade" id="application" role="tabpanel" aria-labelledby="application-tab">
+    @endif
+    <div class='d-flex justify-content-between'>
+        <div class='d-flex mb-3'>
+            <img class='me-3 rounded-pill logo' alt='logo' src='/img/logo.png' height='64' width='64' />
+            <h2 class='my-auto'>Student Applications</h2>
+        </div>
+    </div>
+    <table class="table table-bordered table-hover">
+        <thead class="table-light">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Status</th>
+                <th scope="col">Birth Date</th>
+                <th scope="col">School</th>
+                <th scope="col">Contact Person</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($applications as $key => $application)
+                <tr>
+                    <th scope="row">{{ $key + 1 }}</th>
+                    <td>
+                        @if ($application->image)
+                            <img alt='{{ $application->first_name }}'
+                                src='{{ asset('storage/' . $application->image) }}' width='40' height='40'
+                                style='object-fit:cover' class='rounded-pill me-1' />
+                        @endif
+                        {{ $application->first_name }} {{ $application->last_name }}
+                    </td>
+                    <td>
+                        <span class='badge {{ $colors[$application->status] }}'>
+                            {{ $application->status }}
+                        </span>
+                    </td>
+                    <td>{{ $application->dob }}</td>
+                    <td>{{ $application->school->name }}</td>
+                    <td>{{ $application->contact_person }} {{ $application->contact_details }}</td>
                 </tr>
             @endforeach
         </tbody>
