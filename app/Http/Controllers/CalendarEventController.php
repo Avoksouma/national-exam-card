@@ -196,7 +196,7 @@ class CalendarEventController extends Controller
     public function destroy(int $id): JsonResponse
     {
         $event = CalendarEvent::find($id);
-        if ($event)  $event->delete();
+        if ($event) $event->delete();
         // return redirect()->route('calendar.index');
         return response()->json(['msg' => 'done']);
     }
